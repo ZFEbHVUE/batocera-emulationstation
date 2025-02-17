@@ -36,10 +36,44 @@
 
 #include "Paths.h"
 
+#include <unistd.h>  // For symlink()
+#include <errno.h>    // For error handling
+#include <iostream>   // For logging
+
+
 namespace Utils
 {
 	namespace FileSystem
-	{		
+	{	
+
+		/**
+ * @brief Creates a symbolic link.
+ *
+ * This function creates a symbolic link from `linkPath` to `target`.
+ * If successful, the link allows accessing `target` through `linkPath`.
+ *
+ * @param target The path to the original file/directory.
+ * @param linkPath The path where the symbolic link should be created.
+ * @return true if the symlink was created successfully, false otherwise.
+ */
+		bool createSymlink(const std::string& target, const std::string& linkPath)
+		{
+    			// Attempt to create the symbolic link
+			if (symlink(target.c_str(), linkPath.c_str()) == 0)
+   		 	{
+				std::cout << "Symlink created: " << linkPath << " → " << target << std::endl;
+        			return true;
+    			}
+    			else
+    			{
+        			// Log the error if the symlink creation fails
+        			std::cerr << "Error creating symlink: " << strerror(errno) << std::endl;
+        			return false;
+    			}
+		}
+
+
+	
 		struct FileCache
 		{
 			FileCache() {}
@@ -1616,6 +1650,3 @@ namespace Utils
 	} // FileSystem::
 
 } // Utils::
-
-
-
