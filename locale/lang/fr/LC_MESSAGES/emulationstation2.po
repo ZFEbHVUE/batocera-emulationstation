@@ -2037,10 +2037,10 @@ msgid "Copy current song to favorite folder"
 msgstr "Copier la chanson en cours dans le dossier favori"
 
 msgid "USE FAVORITE MUSIC DIRECTORY"
-msgid "UTILISER LE RÉPERTOIRE DES MUSIQUES PRÉFÉRÉES" 
+msgstr "UTILISER LE RÉPERTOIRE DES MUSIQUES PRÉFÉRÉES" 
 
 msgid "Toggle usage of favorite music directory"
-msgid "Utilisation du répertoire des musiques préférées"
+msgstr "Utilisation du répertoire des musiques préférées"
 
 msgid "LAUNCH SCREENSAVER"
 msgstr "LANCER L'ÉCONOMISEUR D'ÉCRAN"
