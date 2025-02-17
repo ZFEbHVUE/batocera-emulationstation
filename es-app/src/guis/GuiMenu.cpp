@@ -4097,7 +4097,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
 		
 		// For debugging, force the condition and set a test song name
-		#if (AudioManager::getInstance()->isSongPlaying())
+		// if (AudioManager::getInstance()->isSongPlaying())
 		if (true)  // replace with (isPlaying) when functional
 		{
 		    std::string sname = "Test Song";
