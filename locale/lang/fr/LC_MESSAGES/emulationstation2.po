@@ -2027,14 +2027,20 @@ msgstr "ACCÈS RAPIDE"
 msgid "SKIP TO THE NEXT SONG"
 msgstr "PASSER A LA MUSIQUE SUIVANTE"
 
-msgid "SAVE TO FAVORITE MUSIC"
-msgstr "SAUVER VERS LES MUSIQUES FAVORITES"
-
-msgid "Copy current song to favorite folder"
-msgstr "Copie de la musique jouée vers le répertoire des musiques favorites"
-
 msgid "NOW PLAYING"
 msgstr "A L’ÉCOUTE"
+
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ENREGISTRER DANS SA MUSIQUE PRÉFÉRÉE"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copier la chanson en cours dans le dossier favori"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgid "UTILISER LE RÉPERTOIRE DES MUSIQUES PRÉFÉRÉES" 
+
+msgid "Toggle usage of favorite music directory"
+msgid "Utilisation du répertoire des musiques préférées"
 
 msgid "LAUNCH SCREENSAVER"
 msgstr "LANCER L'ÉCONOMISEUR D'ÉCRAN"
