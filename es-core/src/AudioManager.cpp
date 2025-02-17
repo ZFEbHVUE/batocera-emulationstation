@@ -308,6 +308,11 @@ void AudioManager::stopMusic(bool fadeOut)
 	mCurrentMusic = NULL;
 }
 
+std::string AudioManager::getCurrentSongPath() const
+{
+    return mCurrentMusicPath;  // Utilise la bonne variable déclarée dans AudioManager.h
+}
+
 // Fast string hash in order to use strings in switch/case
 // How does this work? Look for Dan Bernstein hash on the internet
 constexpr unsigned int sthash(const char *s, int off = 0)
