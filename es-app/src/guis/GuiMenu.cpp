@@ -4098,6 +4098,8 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		
 		// For debugging, force the condition and set a test song name
 		// if (AudioManager::getInstance()->isSongPlaying())
+		// Option to toggle the use of the favorite music directory for playback
+		
 		if (true)  // replace with (isPlaying) when functional
 		{
 		    std::string sname = "Test Song";
@@ -4148,24 +4150,24 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                              "iconFavorite");
 		
 		        // Option to toggle the use of the favorite music directory for playback
-		        s->addWithDescription(_("USE FAVORITE MUSIC DIRECTORY"),
-		                              _("Toggle usage of favorite music directory"),
-		                              nullptr,
-		                              [s, window]()
-		                              {
-		                                  // Toggle the "audio.useFavoriteMusic" setting
-		                                  bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
-		                                  useFavorite = !useFavorite;
-		                                  Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
-		                                  std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
-		                                  window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-		                                  delete s;
-		                                  openQuitMenu_static(window, true, false);
-		                              },
-		                              "iconSwitchFolder");
+			s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), "audio.useFavoriteMusic", 
+			             Settings::getInstance()->getBool("audio.useFavoriteMusic"), 
+			             [s, window]  // Capturer 'window' ici
+			             {
+			                 // Cette lambda est exécutée lorsque le switch est activé/désactivé
+			                 bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
+			                 std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
+			                 
+			                 // Affichage du message avec la capture de la fenêtre
+			                 window->pushGui(new GuiMsgBox(window, msg, _("OK")));
+			                 
+			                 delete s;
+			                 openQuitMenu_static(window, true, false);
+            			 });
+
 		    }
 		}
-	
+
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
 				Window* w = window;
