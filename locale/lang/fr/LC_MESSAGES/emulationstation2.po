@@ -2027,6 +2027,12 @@ msgstr "ACCÈS RAPIDE"
 msgid "SKIP TO THE NEXT SONG"
 msgstr "PASSER A LA MUSIQUE SUIVANTE"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SAUVER VERS LES MUSIQUES FAVORITES"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copie de la musique jouée vers le répertoire des musiques favorites"
+
 msgid "NOW PLAYING"
 msgstr "A L’ÉCOUTE"
 
