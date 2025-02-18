@@ -1992,6 +1992,18 @@ msgstr ""
 msgid "NOW PLAYING"
 msgstr ""
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ЗБЕРЕГТИ В УЛЮБЛЕНУ МУЗИКУ"
+
+msgid "Copy current song to favorite folder"
+msgstr "Копіювати поточну пісню в папку улюблених"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "ВИКОРИСТОВУВАТИ КАТАЛОГ УЛЮБЛЕНОЇ МУЗИКИ"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Перемкнути використання каталогу улюбленої музики"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "ЗАСТАВКА"
 
