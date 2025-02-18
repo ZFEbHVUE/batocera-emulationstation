@@ -4144,21 +4144,18 @@ if (true)  // replace with (isPlaying) when functional
                               },
                               "iconFavorite");
 // Option to toggle the use of the favorite music directory for playback
-s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), "audio.useFavoriteMusic", 
+s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), 
+             _("Toggle usage of favorite music directory"),  // Ajout de la description
+             "audio.useFavoriteMusic", 
              Settings::getInstance()->getBool("audio.useFavoriteMusic"), 
-             [s, window]  // Capturer 'window' ici
+             [s, window] // Capture `window` aussi
              {
-                 // Cette lambda est exécutée lorsque le switch est activé/désactivé
                  bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
                  std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
-                 
-                 // Affichage du message avec la capture de la fenêtre
                  window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-                 
                  delete s;
                  openQuitMenu_static(window, true, false);
              });
-
     }
 }	
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
