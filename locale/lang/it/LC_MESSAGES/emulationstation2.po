@@ -2024,6 +2024,18 @@ msgstr "PASSA ALLA TRACCIA SUCCESSIVA"
 msgid "NOW PLAYING"
 msgstr "IN ASCOLTO"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SALVA NELLA MUSICA PREFERITA"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copia la canzone attuale nella cartella preferita"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "USA LA CARTELLA DELLA MUSICA PREFERITA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Attiva o disattiva l'uso della cartella della musica preferita"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "AVVIA SALVASCHERMO"
 
