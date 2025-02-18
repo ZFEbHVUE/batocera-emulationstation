@@ -2044,6 +2044,18 @@ msgstr "ZUM NÄCHSTEN SONG SPRINGEN"
 msgid "NOW PLAYING"
 msgstr "AKTUELLER SONGTITEL"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "IN LIEBLINGSMUSIK SPEICHERN"
+
+msgid "Copy current song to favorite folder"
+msgstr "Aktuellen Song in den Favoriten-Ordner kopieren"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "LIEBLINGSMUSIK-VERZEICHNIS VERWENDEN"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Verwendung des Lieblingsmusik-Verzeichnisses umschalten"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "BILDSCHIRMSCHONER STARTEN"
 
