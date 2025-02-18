@@ -2026,6 +2026,18 @@ msgstr "SONRAKİ ŞARKIYA GEÇ"
 msgid "NOW PLAYING"
 msgstr "ŞİMDİ OYNANIYOR"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "FAVORİ MÜZİĞE KAYDET"
+
+msgid "Copy current song to favorite folder"
+msgstr "Geçerli şarkıyı favori klasörüne kopyala"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "FAVORİ MÜZİK DİZİNİNİ KULLAN"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Favori müzik dizini kullanımını değiştir"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "EKRAN KORUYUCUYU ÇALIŞTIR"
 
