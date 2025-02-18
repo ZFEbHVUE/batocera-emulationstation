@@ -2015,6 +2015,18 @@ msgstr "HYPPÄÄ SEURAAVAAN KAPPALEESEEN"
 msgid "NOW PLAYING"
 msgstr "NYT SOITETAAN"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "TALLENNA SUOSIKKIMUSIIKKIIN"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopioi nykyinen kappale suosikkikansioon"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "KÄYTÄ SUOSIKKIMUSIIKIN HAKEMISTOA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Vaihda suosikkimusiikin hakemiston käyttöä"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "KÄYNNISTÄ NÄYTÖNSÄÄSTÄJÄ"
 
