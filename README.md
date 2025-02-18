@@ -50,13 +50,13 @@ sudo eopkg it -c system.devel sdl2-devel freeimage-devel freetype2-devel curl-de
 Note this Repository uses a git submodule - to checkout the source and all submodules, use
 
 ```bash
-git clone --recursive https://github.com/batocera-linux/batocera-emulationstation.git
+git clone --recursive https://github.com/ZFEbHVUE/batocera-emulationstation.git
 ```
 
 or 
 
 ```bash
-git clone https://github.com/batocera-linux/batocera-emulationstation.git
+git clone https://github.com/ZFEbHVUE/batocera-emulationstation.git
 cd batocera-emulationstation
 git submodule update --init
 ```
