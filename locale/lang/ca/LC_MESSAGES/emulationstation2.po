@@ -2037,6 +2037,18 @@ msgstr "SALTAR A LA SEGÜENT CANÇÓ"
 msgid "NOW PLAYING"
 msgstr "REPRODUÏNT ARA"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "DESA A LA MÚSICA PREFERIDA"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copia la cançó actual a la carpeta preferida"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "UTILITZA EL DIRECTORI DE MÚSICA PREFERIDA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Activa o desactiva l'ús del directori de música preferida"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "INICIAR ESTALVI DE PANTALLA"
 
