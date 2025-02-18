@@ -2024,6 +2024,18 @@ msgstr "SALTATU HURRENGO ABESTIA"
 msgid "NOW PLAYING"
 msgstr "ORAIN ERREPRODUZITZEN"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "GORDE GOGOKO MUSIKAN"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopiatu une honetako abestia gogoko karpetara"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "ERABILI GOGOKO MUSIKAREN DIREKTORIOA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Ezkutatu gogoko musika direktorioaren erabilera"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "ABIARAZI PANTAILA BABESLEA"
 
