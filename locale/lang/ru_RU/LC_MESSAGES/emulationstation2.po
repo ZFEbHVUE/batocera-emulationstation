@@ -2020,6 +2020,18 @@ msgstr "ПРОПУСТИТЬ ПЕСНЮ"
 msgid "NOW PLAYING"
 msgstr "СЕЙЧАС ИГРАЕТ"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "СОХРАНИТЬ В ИЗБРАННУЮ МУЗЫКУ"
+
+msgid "Copy current song to favorite folder"
+msgstr "Копировать текущую песню в папку избранного"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "ИСПОЛЬЗОВАТЬ КАТАЛОГ ИЗБРАННОЙ МУЗЫКИ"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Переключить использование каталога избранной музыки"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "ЗАПУСТИТЬ ЗАСТАВКУ"
 
