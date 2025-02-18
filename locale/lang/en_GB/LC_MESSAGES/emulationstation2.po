@@ -2011,6 +2011,18 @@ msgstr "SKIP TO THE NEXT SONG"
 msgid "NOW PLAYING"
 msgstr "NOW PLAYING"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SAVE TO FAVORITE MUSIC"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copy current song to favorite folder"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "USE FAVORITE MUSIC DIRECTORY"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Toggle usage of favorite music directory"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "LAUNCH SCREENSAVER"
 
