@@ -2018,6 +2018,18 @@ msgstr "HOPP TIL NESTE SANG"
 msgid "NOW PLAYING"
 msgstr "SPILLER NÅ"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "LAGRE TIL FAVORITTMUSIKK"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopier den nåværende sangen til favorittmappen"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "BRUK FAVORITTMUSIKK-KATALOGEN"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Veksle bruk av favorittmusikk-katalogen"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "START SKJERMSPARER"
 
