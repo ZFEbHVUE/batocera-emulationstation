@@ -1988,6 +1988,18 @@ msgstr "דילוג על השיר הבא"
 msgid "NOW PLAYING"
 msgstr "מנגן"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "שמור במוזיקה המועדפת"
+
+msgid "Copy current song to favorite folder"
+msgstr "העתק את השיר הנוכחי לתיקיית המועדפים"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "השתמש בתיקיית המוזיקה המועדפת"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "הפעל או בטל את השימוש בתיקיית המוזיקה המועדפת"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "הפעלת שומר מסך"
 
