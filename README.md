@@ -3,7 +3,7 @@ EmulationStation
 
 EmulationStation is a cross-platform graphical front-end for emulators with controller navigation.
 
-ADDING 4 MENUS FOR IN MENU "QUICK ACCES" To keep track of the music you like or when you hear it in
+ADDING 4 MENUS FOR IN MENU "QUICK ACCES" To keep track of the music you like when you hear it in
 a directory of favourite music in /userdata/favorite_songs/ with symbolic links. 
 
 "SAVE TO FAVORITE MUSIC"
