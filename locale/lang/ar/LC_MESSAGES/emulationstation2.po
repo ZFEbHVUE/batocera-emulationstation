@@ -2036,6 +2036,18 @@ msgstr "الموسيقى التالية"
 msgid "NOW PLAYING"
 msgstr "تشتغل حاليا"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "حفظ في الموسيقى المفضلة"
+
+msgid "Copy current song to favorite folder"
+msgstr "نسخ الأغنية الحالية إلى المجلد المفضل"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "استخدام دليل الموسيقى المفضلة"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "تبديل استخدام دليل الموسيقى المفضلة"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "بدء شاشة التوقف"
 
