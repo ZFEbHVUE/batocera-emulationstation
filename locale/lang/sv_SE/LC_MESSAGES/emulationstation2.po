@@ -2020,6 +2020,18 @@ msgstr "HOPPA TILL NÄSTA LÅT"
 msgid "NOW PLAYING"
 msgstr "SPELAS NU"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SPARA TILL FAVORITMUSIK"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopiera aktuell låt till favoritmappen"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "ANVÄND FAVORITMUSIKMAPPEN"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Växla användning av favoritmusikmappen"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "STARTA SKÄRMSLÄCKARE"
 
