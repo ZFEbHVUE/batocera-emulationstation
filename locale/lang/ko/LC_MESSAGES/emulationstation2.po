@@ -2007,6 +2007,18 @@ msgstr "다음 노래로 건너뜀"
 msgid "NOW PLAYING"
 msgstr "지금 재생 중"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "즐겨찾는 음악에 저장"
+
+msgid "Copy current song to favorite folder"
+msgstr "현재 곡을 즐겨찾는 폴더에 복사"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "즐겨찾는 음악 디렉토리 사용"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "즐겨찾는 음악 디렉토리 사용 전환"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "화면보호기 실행"
 
