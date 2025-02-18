@@ -2020,6 +2020,18 @@ msgstr "SKIP KE LAGU BERIKUTNYA"
 msgid "NOW PLAYING"
 msgstr "SEDANG DIMAINKAN"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SIMPAN KE MUSIK FAVORIT"
+
+msgid "Copy current song to favorite folder"
+msgstr "Salin lagu saat ini ke folder favorit"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "GUNAKAN DIREKTORI MUSIK FAVORIT"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Aktifkan atau nonaktifkan penggunaan direktori musik favorit"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "LUNCURKAN SCREENSAVER"
 
