@@ -2019,6 +2019,18 @@ msgstr "PŘESKOČIT NA DALŠÍ SKLADBU"
 msgid "NOW PLAYING"
 msgstr "PRÁVĚ SE PŘEHRÁVÁ"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ULOŽIT DO OBLÍBENÉ HUDBY"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopírovat aktuální skladbu do oblíbené složky"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "POUŽÍT ADRESÁŘ OBLÍBENÉ HUDBY"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Přepnout použití adresáře oblíbené hudby"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "SPUSTIT SPOŘIČ OBRAZOVKY"
 
