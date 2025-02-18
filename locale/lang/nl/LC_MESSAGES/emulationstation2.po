@@ -2042,6 +2042,18 @@ msgstr "SKIP NAAR HET VOLGENDE NUMMER"
 msgid "NOW PLAYING"
 msgstr "SPEELT NU"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "OPSLAAN IN FAVORIETE MUZIEK"
+
+msgid "Copy current song to favorite folder"
+msgstr "Kopieer het huidige nummer naar de favorietenmap"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "GEBRUIK FAVORIETE MUZIEKMAP"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Schakel het gebruik van de favorietenmap in of uit"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "START DE SCHERMBEVEILIGING"
 
