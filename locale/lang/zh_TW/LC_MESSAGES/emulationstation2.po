@@ -1996,6 +1996,18 @@ msgstr "跳至下一首歌"
 msgid "NOW PLAYING"
 msgstr "正在播放"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "保存到最愛音樂"
+
+msgid "Copy current song to favorite folder"
+msgstr "將當前歌曲複製到最愛資料夾"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "使用最愛音樂目錄"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "切換最愛音樂目錄的使用"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "啟動螢幕保護程式"
 
