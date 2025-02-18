@@ -2039,6 +2039,18 @@ msgstr "UGRÁS A KÖVETKEZŐ DALRA"
 msgid "NOW PLAYING"
 msgstr "MOST JÁTSZOTT"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "MENTÉS A KEDVENC ZENÉK KÖZÉ"
+
+msgid "Copy current song to favorite folder"
+msgstr "Másolja az aktuális dalt a kedvenc mappába"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "KEDVENC ZENE KÖNYVTÁR HASZNÁLATA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Kedvenc zene könyvtár használatának váltása"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "KÉPERNYŐVÉDŐ INDÍTÁSA"
 
