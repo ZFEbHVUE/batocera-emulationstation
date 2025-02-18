@@ -2030,6 +2030,18 @@ msgstr "PASSAR PARA A PRÓXIMA MÚSICA"
 msgid "NOW PLAYING"
 msgstr "A REPRODUZIR"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "GUARDAR NA MÚSICA FAVORITA"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copiar a música atual para a pasta de favoritos"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "USAR O DIRETÓRIO DE MÚSICA FAVORITA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Alternar a utilização do diretório de música favorita"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "INICIAR PROTEÇÃO DE ECRÃ"
 
