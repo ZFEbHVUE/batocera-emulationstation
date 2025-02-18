@@ -1985,10 +1985,22 @@ msgid "QUICK ACCESS"
 msgstr "MYNEDIAD CYFLYM"
 
 msgid "SKIP TO THE NEXT SONG"
-msgstr ""
+msgstr "NEIDIO I’R GÂN NESAF"
 
 msgid "NOW PLAYING"
-msgstr ""
+msgstr "YN CHWARAE NAWR"
+
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "CADW I GERDDORIAETH FFAVORIT"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copïo’r gân gyfredol i’r ffolder ffefryn"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "DEFNYDDIO CYFEIRLYFR CERDDORIAETH FFAVORIT"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Toglo defnydd o’r cyfeirlyfr cerddoriaeth ffefryn"
 
 msgid "LAUNCH SCREENSAVER"
 msgstr "LANSIO ARBEDYDD SGRIN"
