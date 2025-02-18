@@ -2038,6 +2038,18 @@ msgstr "TRECI LA URMĂTORUL CÂNTEC"
 msgid "NOW PLAYING"
 msgstr "ACUM SE REDĂ"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "SALVEAZĂ ÎN MUZICA FAVORITĂ"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copiază melodia actuală în folderul favorit"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "UTILIZEAZĂ DIRECTORUL DE MUZICĂ FAVORITĂ"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Comută utilizarea directorului de muzică favorită"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "LANSEAZĂ ECONOMIZORUL DE ECRAN"
 
