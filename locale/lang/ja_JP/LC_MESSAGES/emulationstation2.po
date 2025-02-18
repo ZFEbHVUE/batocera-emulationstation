@@ -2021,6 +2021,18 @@ msgstr "次の曲にスキップ"
 msgid "NOW PLAYING"
 msgstr "現在再生中の曲名"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "お気に入りの音楽に保存"
+
+msgid "Copy current song to favorite folder"
+msgstr "現在の曲をお気に入りフォルダーにコピー"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "お気に入りの音楽ディレクトリを使用"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "お気に入りの音楽ディレクトリの使用を切り替え"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "スクリーンセーバーを起動"
 
