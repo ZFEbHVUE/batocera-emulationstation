@@ -2008,6 +2008,18 @@ msgstr "ΜΕΤΑΒΑΣΗ ΣΤΟ ΕΠΟΜΕΝΟ ΤΡΑΓΟΥΔΙ"
 msgid "NOW PLAYING"
 msgstr "ΤΩΡΑ ΠΑΙΖΕΙ"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ΑΠΟΘΗΚΕΥΣΗ ΣΤΗΝ ΑΓΑΠΗΜΕΝΗ ΜΟΥΣΙΚΗ"
+
+msgid "Copy current song to favorite folder"
+msgstr "Αντιγραφή του τρέχοντος τραγουδιού στο αγαπημένο φάκελο"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "ΧΡΗΣΗ ΚΑΤΑΛΟΓΟΥ ΑΓΑΠΗΜΕΝΗΣ ΜΟΥΣΙΚΗΣ"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Εναλλαγή χρήσης του καταλόγου αγαπημένης μουσικής"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "ΕΝΑΡΞΗ ΠΡΟΦΥΛΑΞΗΣ ΟΘΟΝΗΣ"
 
