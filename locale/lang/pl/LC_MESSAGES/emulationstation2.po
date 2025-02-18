@@ -2031,6 +2031,18 @@ msgstr "PRZEJDŹ DO NASTĘPNEGO UTWORU"
 msgid "NOW PLAYING"
 msgstr "ODTWARZANE OBECNIE"
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ZAPISZ DO ULUBIONEJ MUZYKI"
+
+msgid "Copy current song to favorite folder"
+msgstr "Skopiuj aktualną piosenkę do folderu ulubionych"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "UŻYJ KATALOGU ULUBIONEJ MUZYKI"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Przełącz użycie katalogu ulubionej muzyki"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "URUCHOM WYGASZACZ"
 
