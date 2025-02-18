@@ -1992,6 +1992,18 @@ msgstr ""
 msgid "NOW PLAYING"
 msgstr ""
 
+msgid "SAVE TO FAVORITE MUSIC"
+msgstr "ENREGISTRAR DINS LA MUSICA FAVORITA"
+
+msgid "Copy current song to favorite folder"
+msgstr "Copiar la cançon actuala dins lo dorsièr favorit"
+
+msgid "USE FAVORITE MUSIC DIRECTORY"
+msgstr "UTILIZAR LO REPERTÒRI DE MUSICA FAVORITA"
+
+msgid "Toggle usage of favorite music directory"
+msgstr "Alternar l’usatge del repertòri de musica favorita"
+
 msgid "LAUNCH SCREENSAVER"
 msgstr "AVIAR L'ESTALVIADOR D'ECRAN"
 
