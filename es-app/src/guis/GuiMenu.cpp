@@ -4097,7 +4097,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
     LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
     LOG(LogInfo) << "DEBUG: getCurrentSongPath() returns: " << currentSongPath;
 
-    if (AudioManager::getInstance()->isSongPlaying())
+    if (true)
     {
         s->addWithDescription(_("SKIP TO THE NEXT SONG"),
                               _("NOW PLAYING") + ": " + (!songName.empty() ? songName : _("(No song detected)")),
