@@ -4086,20 +4086,22 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 	auto s = new GuiSettings(window, (quickAccessMenu ? _("QUICK ACCESS") : _("QUIT")).c_str());
 	s->setCloseButton("select");
 
-	    s->addGroup(_("QUICK ACCESS"));
-    LOG(LogInfo) << "DEBUG: Checking - AudioManager called";
+	if (quickAccessMenu)
+	{
+		s->addGroup(_("QUICK ACCESS"));
+    		LOG(LogInfo) << "DEBUG: Checking - AudioManager called";
 
-    bool isPlaying = AudioManager::getInstance()->isSongPlaying();
-    std::string songName = AudioManager::getInstance()->getSongName();
-    std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
+    		bool isPlaying = AudioManager::getInstance()->isSongPlaying();
+    		std::string songName = AudioManager::getInstance()->getSongName();
+    		std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 
-    LOG(LogInfo) << "DEBUG: isSongPlaying() returns: " << isPlaying;
-    LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
-    LOG(LogInfo) << "DEBUG: getCurrentSongPath() returns: " << currentSongPath;
+    		LOG(LogInfo) << "DEBUG: isSongPlaying() returns: " << isPlaying;
+    		LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
+    		LOG(LogInfo) << "DEBUG: getCurrentSongPath() returns: " << currentSongPath;
 
-    if (AudioManager::getInstance()->isSongPlaying())
-    {
-        s->addWithDescription(_("SKIP TO THE NEXT SONG"),
+    		if (AudioManager::getInstance()->isSongPlaying())
+    		{
+        		s->addWithDescription(_("SKIP TO THE NEXT SONG"),
                               _("NOW PLAYING") + ": " + (!songName.empty() ? songName : _("(No song detected)")),
                               nullptr,
                               [s, window]()
@@ -4110,8 +4112,8 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                               },
                               "iconSound");
 
-        // Option to copy (via symbolic link) the currently playing song to /userdata/favorite_music
-        s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"),
+        		// Option to copy (via symbolic link) the currently playing song to /userdata/favorite_music
+        		s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"),
                               nullptr,
                               [s, window, currentSongPath]()
                               {
@@ -4155,27 +4157,27 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                               },
                               "iconFavorite");
 
-        //  FIXED: Check if favorite music folder is empty correctly
-        bool isFavoriteMusicAvailable = Utils::FileSystem::isDirectory("/userdata/favorite_music/") &&
+        			//  FIXED: Check if favorite music folder is empty correctly
+        			bool isFavoriteMusicAvailable = Utils::FileSystem::isDirectory("/userdata/favorite_music/") &&
                                         !Utils::FileSystem::getDirContent("/userdata/favorite_music/").empty();
 
-        // Display "USE FAVORITE MUSIC DIRECTORY" switch **only if** favorite music exists
-        if (isFavoriteMusicAvailable)
-        {
-            s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), 
-                         _("Toggle usage of favorite music directory"),
-                         "audio.useFavoriteMusic", 
-                         Settings::getInstance()->getBool("audio.useFavoriteMusic"), 
-                         [s, window]()
-                         {
-                             bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
-                             std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
-                             window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-                             delete s;
-                             openQuitMenu_static(window, true, false);
-                         });
-        }
-    }
+        			// Display "USE FAVORITE MUSIC DIRECTORY" switch **only if** favorite music exists
+        			if (isFavoriteMusicAvailable)
+        			{
+            				s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), 
+                         		_("Toggle usage of favorite music directory"),
+                         		"audio.useFavoriteMusic", 
+                         		Settings::getInstance()->getBool("audio.useFavoriteMusic"), 
+                        		 [s, window]()
+                         		{
+                             			bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
+                             			std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
+                             			window->pushGui(new GuiMsgBox(window, msg, _("OK")));
+                             			delete s;
+                             			openQuitMenu_static(window, true, false);
+                         		});
+        			}
+    		}
 
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
@@ -4218,7 +4220,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			}
 		}
 	
-
+	}
 	if (quickAccessMenu)
 		s->addGroup(_("QUIT"));
 
