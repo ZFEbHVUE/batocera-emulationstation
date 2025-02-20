@@ -4217,7 +4217,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 					}, "iconPlanemode");
 			}
 		}
-	}
+	
 
 	if (quickAccessMenu)
 		s->addGroup(_("QUIT"));
