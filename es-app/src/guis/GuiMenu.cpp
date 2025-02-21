@@ -1,4 +1,4 @@
-#include "guis/GuiMenu.h"
+//#include "guis/GuiMenu.h"
 
 #include "components/OptionListComponent.h"
 #include "components/SliderComponent.h"
@@ -4085,8 +4085,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 
 	auto s = new GuiSettings(window, (quickAccessMenu ? _("QUICK ACCESS") : _("QUIT")).c_str());
 	s->setCloseButton("select");
-
-	if (quickAccessMenu)
+if (quickAccessMenu)
 {
     s->addGroup(_("QUICK ACCESS"));
     LOG(LogInfo) << "DEBUG: Checking - AudioManager called";
@@ -4182,6 +4181,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                          });
         }
     }
+	
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
 				Window* w = window;
