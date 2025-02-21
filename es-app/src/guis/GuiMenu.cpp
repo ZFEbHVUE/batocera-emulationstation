@@ -4087,38 +4087,31 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 	s->setCloseButton("select");
 
 	if (quickAccessMenu)
-	{
-		s->addGroup(_("QUICK ACCESS"));
-		LOG(LogInfo) << "DEBUG: Checking - AudioManager called";
-		
-		bool isPlaying = AudioManager::getInstance()->isSongPlaying();
-		std::string songName = AudioManager::getInstance()->getSongName();
-		std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
-		
-		LOG(LogInfo) << "DEBUG: isSongPlaying() returns: " << isPlaying;
-		LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
-		LOG(LogInfo) << "DEBUG: getCurrentSongPath() returns: " << currentSongPath;
+{
+    s->addGroup(_("QUICK ACCESS"));
+    LOG(LogInfo) << "DEBUG: Checking - AudioManager called";
 
-		if (isPlaying)
-		{
-			// Skip to the next song
-			s->addWithDescription(_("SKIP TO THE NEXT SONG"),
-			_("NOW PLAYING") + ": " + (!songName.empty() ? songName : _("(No song detected)")),
-			nullptr,
-			[s, window]()
-			{
-				AudioManager::getInstance()->playRandomMusic(false);
-				
-				// Affichage du message avec la nouvelle musique
-				std::string newSong = AudioManager::getInstance()->getSongName();
-				window->pushGui(new GuiMsgBox(window, _("Now playing: ") + (!newSong.empty() ? newSong : _("(No song detected)")), _("OK")));
-				
-				delete s;
-			},
-			"iconSound");
+    bool isPlaying = AudioManager::getInstance()->isSongPlaying();
+    std::string songName = AudioManager::getInstance()->getSongName();
+    std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 
-        		// Save to favorite music
-			s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"),
+    LOG(LogInfo) << "DEBUG: isSongPlaying() returns: " << isPlaying;
+    LOG(LogInfo) << "DEBUG: getSongName() returns: " << songName;
+    LOG(LogInfo) << "DEBUG: getCurrentSongPath() returns: " << currentSongPath;
+
+    if (isPlaying)
+    {
+        s->addWithDescription(_("SKIP TO THE NEXT SONG"),
+                              _("NOW PLAYING") + ": " + (!songName.empty() ? songName : _("(No song detected)")),
+                              nullptr,
+                              [s, window]()
+                              {
+                                  AudioManager::getInstance()->playRandomMusic(false);
+                                  s->update(); // Rafraîchir le menu pour afficher le nouveau titre
+                              },
+                              "iconSound");
+
+        s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"),
                               nullptr,
                               [s, window, currentSongPath]()
                               {
@@ -4128,65 +4121,67 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                                       std::string fileName = Utils::FileSystem::getFileName(currentSongPath);
                                       std::string favoritePath = favoriteDir + fileName;
 
-                                      // Ensure favorite directory exists
                                       if (!Utils::FileSystem::exists(favoriteDir))
                                           Utils::FileSystem::createDirectory(favoriteDir);
 
-                                      // Prevent duplicate entries
                                       if (Utils::FileSystem::exists(favoritePath))
                                       {
                                           window->pushGui(new GuiMsgBox(window, 
                                               _("This song is already in Favorites. Overwrite?"), 
-                                              _("YES"), [favoritePath, currentSongPath, window]() 
-					  {
+                                              _("YES"), [favoritePath, currentSongPath, window]() {
                                                   Utils::FileSystem::removeFile(favoritePath);
                                                   Utils::FileSystem::createSymlink(currentSongPath, favoritePath);
                                                   window->pushGui(new GuiMsgBox(window, _("Song updated in favorite folder!"), _("OK")));
-                                          },_("NO"), nullptr));
+                                              },
+                                              _("NO"), nullptr));
                                       }
                                       else
                                       {
-                                          // Create symbolic link
                                           if (Utils::FileSystem::createSymlink(currentSongPath, favoritePath))
                                               window->pushGui(new GuiMsgBox(window, _("Song added to favorite folder!"), _("OK")));
                                           else
                                               window->pushGui(new GuiMsgBox(window, _("Error: Could not link song."), _("OK")));
                                       }
+
+                                      // Activer automatiquement l'utilisation du dossier Favoris
+                                      Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
+                                      Settings::getInstance()->saveFile();
+
+                                      // Recharger la liste de musique pour s'assurer que le bon répertoire est utilisé
+                                      AudioManager::getInstance()->reloadMusicList();
                                   }
                                   else
                                   {
                                       window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
                                   }
-
-                                  delete s;
+                                  s->update(); // Rafraîchir le menu
                               },
                               "iconFavorite");
 
-        // Check if favorite music folder exists and has files
         bool isFavoriteMusicAvailable = Utils::FileSystem::isDirectory("/userdata/favorite_music/") &&
                                         !Utils::FileSystem::getDirContent("/userdata/favorite_music/").empty();
 
-        // Display "USE FAVORITE MUSIC DIRECTORY" switch **only if** favorite music exists
         if (isFavoriteMusicAvailable)
         {
-            s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"), 
+            s->addSwitch(_("USE FAVORITE MUSIC DIRECTORY"),
                          _("Toggle usage of favorite music directory"),
-                         "audio.useFavoriteMusic", 
-                         Settings::getInstance()->getBool("audio.useFavoriteMusic"), 
-                         [window]()
+                         "audio.useFavoriteMusic",
+                         Settings::getInstance()->getBool("audio.useFavoriteMusic"),
+                         [s, window]()
                          {
-                             bool useFavorite = Settings::getInstance()->getBool("audio.useFavoriteMusic");
-                             Settings::getInstance()->setBool("audio.useFavoriteMusic", !useFavorite);
+                             bool useFavorite = !Settings::getInstance()->getBool("audio.useFavoriteMusic");
+                             Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
                              Settings::getInstance()->saveFile();
+                             
+                             // Recharger la liste de musique pour appliquer le changement
+                             AudioManager::getInstance()->reloadMusicList();
 
-                             std::string msg = useFavorite ? _("Default music directory activated!") : _("Favorite music directory activated!");
+                             std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
                              window->pushGui(new GuiMsgBox(window, msg, _("OK")));
+                             s->update(); // Mettre à jour l'affichage du menu
                          });
         }
     }
-
-
-
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
 				Window* w = window;
