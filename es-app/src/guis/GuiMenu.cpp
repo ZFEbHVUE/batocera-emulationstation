@@ -4106,7 +4106,7 @@ if (quickAccessMenu)
                               [s, window]()
                               {
                                   AudioManager::getInstance()->playRandomMusic(false);
-                                  s->update(); // Rafraîchir le menu pour afficher le nouveau titre
+                                  window->pushGui(s); // Mettre à jour le menu correctement
                               },
                               "iconSound");
 
@@ -4145,15 +4145,12 @@ if (quickAccessMenu)
                                       // Activer automatiquement l'utilisation du dossier Favoris
                                       Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
                                       Settings::getInstance()->saveFile();
-
-                                      // Recharger la liste de musique pour s'assurer que le bon répertoire est utilisé
-                                      AudioManager::getInstance()->reloadMusicList();
                                   }
                                   else
                                   {
                                       window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
                                   }
-                                  s->update(); // Rafraîchir le menu
+                                  window->pushGui(s); // Rafraîchir le menu
                               },
                               "iconFavorite");
 
@@ -4171,13 +4168,10 @@ if (quickAccessMenu)
                              bool useFavorite = !Settings::getInstance()->getBool("audio.useFavoriteMusic");
                              Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
                              Settings::getInstance()->saveFile();
-                             
-                             // Recharger la liste de musique pour appliquer le changement
-                             AudioManager::getInstance()->reloadMusicList();
 
                              std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
                              window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-                             s->update(); // Mettre à jour l'affichage du menu
+                             window->pushGui(s); // Mettre à jour l'affichage du menu
                          });
         }
     }
