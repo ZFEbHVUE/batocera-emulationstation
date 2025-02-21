@@ -4143,8 +4143,8 @@ if (quickAccessMenu)
                                       Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
                                       Settings::getInstance()->saveFile();
 
-                                      // Forcer la lecture depuis le dossier Favoris
-                                      AudioManager::getInstance()->changeMusicDirectory("/userdata/favorite_music/");
+                                      // Recharger la liste de musique pour s'assurer que le bon répertoire est utilisé
+                                      AudioManager::getInstance()->playRandomMusic(true);
                                   }
                                   else
                                   {
@@ -4167,11 +4167,8 @@ if (quickAccessMenu)
                              Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
                              Settings::getInstance()->saveFile();
 
-                             // Appliquer le bon répertoire de musique
-                             if (useFavorite)
-                                 AudioManager::getInstance()->changeMusicDirectory("/userdata/favorite_music/");
-                             else
-                                 AudioManager::getInstance()->changeMusicDirectory("/default/music/path/");
+                             // Appliquer le bon répertoire de musique en rechargeant la liste
+                             AudioManager::getInstance()->playRandomMusic(true);
 
                              std::string msg = useFavorite ? "Favorite music directory activated!" : "Default music directory activated!";
                              window->pushGui(new GuiMsgBox(window, msg, "OK"));
