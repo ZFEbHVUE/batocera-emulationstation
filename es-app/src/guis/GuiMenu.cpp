@@ -4100,12 +4100,17 @@ if (quickAccessMenu)
 
     if (isPlaying)
     {
+        auto updateNowPlaying = [s]() {
+            std::string updatedSongName = AudioManager::getInstance()->getSongName();
+            s->updateEntry("SKIP TO THE NEXT SONG", "NOW PLAYING: " + (!updatedSongName.empty() ? updatedSongName : "(No song detected)"));
+        };
+
         s->addWithDescription("SKIP TO THE NEXT SONG",
                               "NOW PLAYING: " + (!songName.empty() ? songName : "(No song detected)"),
                               nullptr,
-                              [s, window]() {
+                              [s, window, updateNowPlaying]() {
                                   AudioManager::getInstance()->playRandomMusic(false);
-                                  window->pushGui(new GuiMsgBox(window, "Skipping to next song...", "OK"));
+                                  updateNowPlaying();
                               },
                               "iconSound");
 
@@ -4143,7 +4148,8 @@ if (quickAccessMenu)
                                       Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
                                       Settings::getInstance()->saveFile();
 
-                                      // Recharger la liste de musique pour s'assurer que le bon répertoire est utilisé
+                                      AudioManager::getInstance()->setMusicDirectory(favoriteDir);
+                                      AudioManager::getInstance()->reloadMusicList();
                                       AudioManager::getInstance()->playRandomMusic(true);
                                   }
                                   else
@@ -4167,7 +4173,12 @@ if (quickAccessMenu)
                              Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
                              Settings::getInstance()->saveFile();
 
-                             // Appliquer le bon répertoire de musique en rechargeant la liste
+                             if (useFavorite)
+                                 AudioManager::getInstance()->setMusicDirectory("/userdata/favorite_music/");
+                             else
+                                 AudioManager::getInstance()->setMusicDirectory("/default/music/directory/");
+                             
+                             AudioManager::getInstance()->reloadMusicList();
                              AudioManager::getInstance()->playRandomMusic(true);
 
                              std::string msg = useFavorite ? "Favorite music directory activated!" : "Default music directory activated!";
