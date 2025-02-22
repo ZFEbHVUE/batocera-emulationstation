@@ -4100,17 +4100,12 @@ if (quickAccessMenu)
 
     if (isPlaying)
     {
-        auto updateNowPlaying = [s]() {
-            std::string updatedSongName = AudioManager::getInstance()->getSongName();
-            s->updateText("SKIP TO THE NEXT SONG", "NOW PLAYING: " + (!updatedSongName.empty() ? updatedSongName : "(No song detected)"));
-        };
-
         s->addWithDescription("SKIP TO THE NEXT SONG",
                               "NOW PLAYING: " + (!songName.empty() ? songName : "(No song detected)"),
                               nullptr,
-                              [s, updateNowPlaying]() {
+                              [s]() {
                                   AudioManager::getInstance()->playRandomMusic(false);
-                                  updateNowPlaying();
+                                  s->update();
                               },
                               "iconSound");
 
@@ -4149,6 +4144,7 @@ if (quickAccessMenu)
                                       Settings::getInstance()->saveFile();
 
                                       AudioManager::getInstance()->playRandomMusic(true);
+                                      s->update();
                                   }
                                   else
                                   {
@@ -4175,6 +4171,7 @@ if (quickAccessMenu)
 
                              std::string msg = useFavorite ? "Favorite music directory activated!" : "Default music directory activated!";
                              window->pushGui(new GuiMsgBox(window, msg, "OK"));
+                             s->update();
                          });
         }
     }
