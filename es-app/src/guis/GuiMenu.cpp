@@ -4085,17 +4085,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 
 	auto s = new GuiSettings(window, (quickAccessMenu ? _("QUICK ACCESS") : _("QUIT")).c_str());
 	s->setCloseButton("select");
-	#include "GuiMenu.h"
-#include "AudioManager.h"
-#include "Settings.h"
-#include "components/OptionListComponent.h"
-#include "guis/GuiMsgBox.h"
-#include "utils/FileSystemUtil.h"
-
-void GuiMenu::openQuitMenu_static(Window* window, bool quickAccessMenu, bool confirm)
-{
-    auto s = std::make_shared<GuiSettings>(window, "MUSIC SETTINGS");
-
     if (quickAccessMenu)
     {
         // Affichage de la musique en cours
