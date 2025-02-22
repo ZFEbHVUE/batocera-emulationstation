@@ -4084,7 +4084,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		        std::string songName = AudioManager::getInstance()->getSongName();
 		        std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 		
-		        if (!songName.empty())
+		        if (!songName.empty()) 
 		        {
 		            s->addWithDescription(_("SKIP TO THE NEXT SONG"), _("NOW PLAYING") + ": " + songName, {}, [s, window]
 		                {
