@@ -4102,14 +4102,7 @@ if (quickAccessMenu)
     {
         auto updateNowPlaying = [s]() {
             std::string updatedSongName = AudioManager::getInstance()->getSongName();
-            s->removeEntry("SKIP TO THE NEXT SONG");
-            s->addWithDescription("SKIP TO THE NEXT SONG",
-                                  "NOW PLAYING: " + (!updatedSongName.empty() ? updatedSongName : "(No song detected)"),
-                                  nullptr,
-                                  [s]() {
-                                      AudioManager::getInstance()->playRandomMusic(false);
-                                  },
-                                  "iconSound");
+            s->updateText("SKIP TO THE NEXT SONG", "NOW PLAYING: " + (!updatedSongName.empty() ? updatedSongName : "(No song detected)"));
         };
 
         s->addWithDescription("SKIP TO THE NEXT SONG",
