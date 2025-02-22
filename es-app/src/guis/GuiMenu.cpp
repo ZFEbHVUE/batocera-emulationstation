@@ -4163,7 +4163,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                });
 		            }
 		        }
-		    
+		    }  
 
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
@@ -4206,7 +4206,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			}
 		}
 	}
-}
+
 	if (quickAccessMenu)
 		s->addGroup(_("QUIT"));
 
