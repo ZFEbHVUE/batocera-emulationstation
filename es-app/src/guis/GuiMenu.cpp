@@ -4077,23 +4077,93 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 
 	if (quickAccessMenu)
 	{
-		s->addGroup(_("QUICK ACCESS"));
+    		s->addGroup(_("QUICK ACCESS"));
 
-		// Don't like one of the songs? Press next
-		if (AudioManager::getInstance()->isSongPlaying())
-		{
-			auto sname = AudioManager::getInstance()->getSongName();
-			if (!sname.empty())
-			{
-				s->addWithDescription(_("SKIP TO THE NEXT SONG"), _("NOW PLAYING") + ": " + sname, nullptr, [s, window]
-					{
-						Window* w = window;
-						AudioManager::getInstance()->playRandomMusic(false);
-						delete s;
-						openQuitMenu_static(w, true, false);
-					}, "iconSound");
-			}
-		}
+		    if (AudioManager::getInstance()->isSongPlaying())
+		    {
+		        std::string songName = AudioManager::getInstance()->getSongName();
+		        std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
+		
+		        if (!songName.empty())
+		        {
+		            s->addWithDescription(_("SKIP TO THE NEXT SONG"), _("NOW PLAYING") + ": " + songName, {}, [s, window]
+		                {
+		                    Window* w = window;
+		                    AudioManager::getInstance()->playRandomMusic(false);
+		                    GuiMenu::openQuitMenu_static(w, true, false);
+		                }, "iconSound");
+		
+		            // Option pour sauvegarder la musique actuelle dans le répertoire des favoris
+		            s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"), {}, [window, currentSongPath]()
+		                {
+		                    if (!currentSongPath.empty())
+		                    {
+		                        std::string favoriteDir = "/userdata/favorite_music/";
+		                        std::string fileName = Utils::FileSystem::getFileName(currentSongPath);
+		                        std::string favoritePath = favoriteDir + fileName;
+		
+		                        // Vérifie si le dossier des favoris existe, sinon le créer
+		                        if (!Utils::FileSystem::exists(favoriteDir))
+		                        {
+		                            Utils::FileSystem::createDirectory(favoriteDir);
+		                        }
+		
+		                        // Vérifie si la musique est déjà enregistrée
+		                        if (Utils::FileSystem::exists(favoritePath))
+		                        {
+		                            window->pushGui(new GuiMsgBox(window, 
+		                                _("This song is already in Favorites. Overwrite?"), 
+		                                _("YES"), [favoritePath, currentSongPath, window]() {
+		                                    Utils::FileSystem::removeFile(favoritePath);
+		                                    Utils::FileSystem::copyFile(currentSongPath, favoritePath);
+		                                    window->pushGui(new GuiMsgBox(window, _("Song updated in favorite folder!"), _("OK")));
+		                                },
+		                                _("NO"), nullptr));
+		                        }
+		                        else
+		                        {
+		                            if (Utils::FileSystem::copyFile(currentSongPath, favoritePath))
+		                                window->pushGui(new GuiMsgBox(window, _("Song added to favorite folder!"), _("OK")));
+		                            else
+		                                window->pushGui(new GuiMsgBox(window, _("Error: Could not copy song."), _("OK")));
+		                        }
+		
+		                        // Active automatiquement la lecture depuis les favoris
+		                        Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
+		                        Settings::getInstance()->saveFile();
+		
+		                        AudioManager::getInstance()->playRandomMusic(true);
+		                    }
+		                    else
+		                    {
+		                        window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
+		                    }
+		                }, "iconFavorite");
+		
+		            // Vérifie si des musiques favorites existent
+		            bool isFavoriteMusicAvailable = Utils::FileSystem::isDirectory("/userdata/favorite_music/") &&
+		                                            !Utils::FileSystem::getDirContent("/userdata/favorite_music/").empty();
+		
+		            if (isFavoriteMusicAvailable)
+		            {
+		                auto favoriteSwitch = std::make_shared<SwitchComponent>(window);
+		                favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
+		
+		                s->addWithLabel(_("USE FAVORITE MUSIC DIRECTORY"), favoriteSwitch);
+		                s->addSaveFunc([window, favoriteSwitch]() {
+		                    bool useFavorite = favoriteSwitch->getState();
+		                    Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
+		                    Settings::getInstance()->saveFile();
+		
+		                    std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
+		                    window->pushGui(new GuiMsgBox(window, msg, _("OK")));
+		
+		                    // Recharger la musique selon l'option activée
+		                    AudioManager::getInstance()->playRandomMusic(true);
+		                });
+		            }
+		        }
+		    
 
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
@@ -4136,7 +4206,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			}
 		}
 	}
-
+}
 	if (quickAccessMenu)
 		s->addGroup(_("QUIT"));
 
