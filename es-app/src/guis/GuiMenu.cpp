@@ -4117,8 +4117,19 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                                       std::string fileName = Utils::FileSystem::getFileName(currentSongPath);
                                       std::string favoritePath = favoriteDir + fileName;
 
+                                      LOG(LogInfo) << "DEBUG: Checking favorite directory: " << favoriteDir;
+
                                       if (!Utils::FileSystem::exists(favoriteDir))
-                                          Utils::FileSystem::createDirectory(favoriteDir);
+                                      {
+                                          LOG(LogInfo) << "DEBUG: Creating favorite directory...";
+                                          if (!Utils::FileSystem::createDirectory(favoriteDir))
+                                          {
+                                              window->pushGui(new GuiMsgBox(window, "Error: Could not create favorite music folder.", "OK"));
+                                              return;
+                                          }
+                                      }
+
+                                      LOG(LogInfo) << "DEBUG: Favorite music directory exists.";
 
                                       if (Utils::FileSystem::exists(favoritePath))
                                       {
@@ -4126,8 +4137,10 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                                               "This song is already in Favorites. Overwrite?", 
                                               "YES", [favoritePath, currentSongPath, window]() {
                                                   Utils::FileSystem::removeFile(favoritePath);
-                                                  Utils::FileSystem::createSymlink(currentSongPath, favoritePath);
-                                                  window->pushGui(new GuiMsgBox(window, "Song updated in favorite folder!", "OK"));
+                                                  if (Utils::FileSystem::createSymlink(currentSongPath, favoritePath))
+                                                      window->pushGui(new GuiMsgBox(window, "Song updated in favorite folder!", "OK"));
+                                                  else
+                                                      window->pushGui(new GuiMsgBox(window, "Error: Could not update song.", "OK"));
                                               },
                                               "NO", nullptr));
                                       }
@@ -4136,12 +4149,20 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                                           if (Utils::FileSystem::createSymlink(currentSongPath, favoritePath))
                                               window->pushGui(new GuiMsgBox(window, "Song added to favorite folder!", "OK"));
                                           else
-                                              window->pushGui(new GuiMsgBox(window, "Error: Could not link song.", "OK"));
+                                          {
+                                              LOG(LogInfo) << "DEBUG: Failed to create symlink, trying copy...";
+                                              if (Utils::FileSystem::copyFile(currentSongPath, favoritePath))
+                                                  window->pushGui(new GuiMsgBox(window, "Song copied to favorite folder!", "OK"));
+                                              else
+                                                  window->pushGui(new GuiMsgBox(window, "Error: Could not link or copy song.", "OK"));
+                                          }
                                       }
 
+                                      // Activation automatique de l'option "Use Favorite Music Directory"
                                       Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
                                       Settings::getInstance()->saveFile();
 
+                                      // Recharger la liste de musiques après l'ajout
                                       AudioManager::getInstance()->playRandomMusic(true);
                                   }
                                   else
