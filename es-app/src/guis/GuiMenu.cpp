@@ -4093,7 +4093,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                    GuiMenu::openQuitMenu_static(w, true, false);
 		                }, "iconSound");
 		
-		            // Option pour sauvegarder la musique actuelle dans le répertoire des favoris
 		            s->addWithDescription(_("SAVE TO FAVORITE MUSIC"), _("Copy current song to favorite folder"), {}, [window, currentSongPath]()
 		                {
 		                    if (!currentSongPath.empty())
@@ -4128,7 +4127,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                                window->pushGui(new GuiMsgBox(window, _("Error: Could not copy song."), _("OK")));
 		                        }
 		
-		                        // Active automatiquement la lecture depuis les favoris
 		                        Settings::getInstance()->setBool("audio.useFavoriteMusic", true);
 		                        Settings::getInstance()->saveFile();
 		
@@ -4140,7 +4138,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                    }
 		                }, "iconFavorite");
 		
-		            // Vérifie si des musiques favorites existent
 		            bool isFavoriteMusicAvailable = Utils::FileSystem::isDirectory("/userdata/favorite_music/") &&
 		                                            !Utils::FileSystem::getDirContent("/userdata/favorite_music/").empty();
 		
@@ -4157,8 +4154,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		
 		                    std::string msg = useFavorite ? _("Favorite music directory activated!") : _("Default music directory activated!");
 		                    window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-		
-		                    // Recharger la musique selon l'option activée
 		                    AudioManager::getInstance()->playRandomMusic(true);
 		                });
 		            }
