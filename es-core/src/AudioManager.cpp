@@ -207,46 +207,55 @@ bool AudioManager::songWasPlayedRecently(const std::string& song)
 
 void AudioManager::playRandomMusic(bool continueIfPlaying) 
 {
-	if (!Settings::BackgroundMusic())
-		return;
-		
-	std::vector<std::string> musics;
+    if (!Settings::BackgroundMusic())
+        return;
+        
+    std::vector<std::string> musics;
 
-	// check in Theme music directory
-	if (!mCurrentThemeMusicDirectory.empty())
-		getMusicIn(mCurrentThemeMusicDirectory, musics);
+    // Si le mode "musique favorite" est activé, ne chercher que dans /userdata/favorite_music/
+    if (Settings::getInstance()->getBool("audio.useFavoriteMusic"))
+    {
+        getMusicIn("/userdata/favorite_music/", musics);
+    }
+    else
+    {
+        // Recherche dans le répertoire de la musique du thème courant
+        if (!mCurrentThemeMusicDirectory.empty())
+            getMusicIn(mCurrentThemeMusicDirectory, musics);
 
-	// check in User music directory
-	if (musics.empty())
-		getMusicIn(Paths::getUserMusicPath(), musics);
+        // Recherche dans le répertoire utilisateur de la musique
+        if (musics.empty())
+            getMusicIn(Paths::getUserMusicPath(), musics);
 
-	// check in system sound directory
-	if (musics.empty())
-		getMusicIn(Paths::getMusicPath(), musics);
+        // Recherche dans le répertoire des sons système
+        if (musics.empty())
+            getMusicIn(Paths::getMusicPath(), musics);
 
-	// check in .emulationstation/music directory
-	if (musics.empty())
-		getMusicIn(Paths::getUserEmulationStationPath() + "/music", musics);
+        // Recherche dans le répertoire .emulationstation/music
+        if (musics.empty())
+            getMusicIn(Paths::getUserEmulationStationPath() + "/music", musics);
+    }
 
-	if (musics.empty())
-		return;
+    if (musics.empty())
+        return;
 
-	int randomIndex = Randomizer::random(musics.size());
-	while (songWasPlayedRecently(musics.at(randomIndex)))
-	{
-		LOG(LogDebug) << "Music \"" << musics.at(randomIndex) << "\" was played recently, trying again";
-		randomIndex = Randomizer::random(musics.size());
-	}
+    int randomIndex = Randomizer::random(musics.size());
+    while (songWasPlayedRecently(musics.at(randomIndex)))
+    {
+        LOG(LogDebug) << "Music \"" << musics.at(randomIndex) << "\" was played recently, trying again";
+        randomIndex = Randomizer::random(musics.size());
+    }
 
-	// continue playing ?
-	if (mCurrentMusic != nullptr && continueIfPlaying)
-		return;
+    // Si une musique est déjà en cours et qu'on ne force pas, on ne change pas
+    if (mCurrentMusic != nullptr && continueIfPlaying)
+        return;
 
-	playMusic(musics.at(randomIndex));
-	playSong(musics.at(randomIndex));
-	addLastPlayed(musics.at(randomIndex), musics.size());
-	mPlayingSystemThemeSong = "";
+    playMusic(musics.at(randomIndex));
+    playSong(musics.at(randomIndex));
+    addLastPlayed(musics.at(randomIndex), musics.size());
+    mPlayingSystemThemeSong = "";
 }
+
 
 void AudioManager::playMusic(std::string path)
 {
