@@ -30,8 +30,8 @@ private:
 	std::string mSystemName;			// Per system music folder
 	std::string mCurrentSong;			// Song name displayed in pop-ups
 	std::string mCurrentThemeMusicDirectory;
-	std::string mCurrentMusicPath;      // ✅ Stores the full path of the currently playing song
-	std::deque<std::string> mLastPlayed;  // Stores recently played songs
+	std::string mCurrentMusicPath;                  //  Stores the full path of the currently playing song
+	std::deque<std::string> mLastPlayed;            // Stores recently played songs
 
 	bool		mInitialized;
 	std::string	mPlayingSystemThemeSong;
