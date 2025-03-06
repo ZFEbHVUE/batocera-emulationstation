@@ -25,6 +25,7 @@ public:
 	// Music
 	static std::string& getMusicPath() { return getInstance()->mMusicPath; }
 	static std::string& getUserMusicPath() { return getInstance()->mUserMusicPath; }
+	static std::string getUserDataPath();
         static std::string getUserFavoriteMusicPath();
 
 	// Themes
