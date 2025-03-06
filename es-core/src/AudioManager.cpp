@@ -30,29 +30,26 @@
 AudioManager* AudioManager::sInstance = NULL;
 std::vector<std::shared_ptr<Sound>> AudioManager::sSoundVector;
 
-namespace {
-    std::vector<std::pair<std::string, std::string>> loadFavoriteSongs(const std::string& favoritesFile)
-    {
-        std::vector<std::pair<std::string, std::string>> favorites;
-        std::ifstream ifs(favoritesFile);
-        if (!ifs.is_open())
-            return favorites;
-        
-        std::string line;
-        while (std::getline(ifs, line))
-        {
-            if (line.empty())
-                continue;
-            std::istringstream iss(line);
-            std::string path, name;
-           
-            if (std::getline(iss, path, ';') && std::getline(iss, name))
-            {
-                favorites.push_back(std::make_pair(path, name));
-            }
-        }
-        return favorites;
-    }
+namespace 
+{
+	   std::vector<std::pair<std::string, std::string>> loadFavoriteSongs(const std::string &favoritesFile)
+	   {
+		    std::vector<std::pair<std::string, std::string>> favorites;
+		    std::list<std::string> lines = Utils::FileSystem::readAllLines(favoritesFile);
+		    for (const auto &line : lines)
+		    {
+			if (line.empty())
+			    continue;
+			size_t pos = line.find(';');
+			if (pos != std::string::npos)
+			{
+			    std::string path = line.substr(0, pos);
+			    std::string name = line.substr(pos + 1);
+			    favorites.push_back(std::make_pair(path, name));
+			}
+	    }
+	    return favorites;
+	}
 } 
 
 
