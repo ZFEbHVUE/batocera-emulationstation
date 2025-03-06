@@ -82,6 +82,11 @@ Paths::Paths()
 	loadCustomConfiguration(true); // Load paths overrides from emulationstation.ini file
 }
 
+std::string Paths::getUserFavoriteMusicPath()
+{
+    return getUserDataPath() + "/favorite_music/";
+}
+
 void Paths::loadCustomConfiguration(bool overridesOnly)
 {
 	// Files
