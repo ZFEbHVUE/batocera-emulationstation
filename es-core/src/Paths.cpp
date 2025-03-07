@@ -83,6 +83,23 @@ Paths::Paths()
 }
 
 
+
+#ifdef WIN32
+#include <windows.h>
+#include <shlobj.h>
+
+std::string Paths::getWin32UserDataPath()
+{
+    char path[MAX_PATH];
+    if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, path)))
+    {
+        return std::string(path) + "\\batocera\\";
+    }
+    return "C:\\batocera\\"; // Chemin de secours
+}
+#endif
+
+
 std::string Paths::getUserDataPath()
 {
 #ifdef WIN32
