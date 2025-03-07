@@ -101,6 +101,7 @@ std::string Paths::getUserFavoriteMusicPath()
 #endif
 }
 
+
 void Paths::loadCustomConfiguration(bool overridesOnly)
 {
 	// Files
