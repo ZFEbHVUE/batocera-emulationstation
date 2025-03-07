@@ -28,6 +28,10 @@ public:
 	static std::string getUserDataPath();
         static std::string getUserFavoriteMusicPath();
 
+	#ifdef WIN32
+    	static std::string getWin32UserDataPath();
+	#endif
+
 	// Themes
 	static std::string& getThemesPath() { return getInstance()->mThemesPath; }
 	static std::string& getUserThemesPath() { return getInstance()->mUserThemesPath; }
