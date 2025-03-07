@@ -95,7 +95,7 @@ std::string Paths::getWin32UserDataPath()
     {
         return std::string(path) + "\\batocera\\";
     }
-    return "C:\\batocera\\"; // Chemin de secours
+    return "C:\\batocera\\";
 }
 #endif
 
