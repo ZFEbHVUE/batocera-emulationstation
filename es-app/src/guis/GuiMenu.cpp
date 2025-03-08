@@ -4134,7 +4134,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			                                  }
 			                              }
 			
-			                              // Ne pas activer automatiquement le mode favorite ici.
 			                              Settings::getInstance()->saveFile();
 			                              AudioManager::getInstance()->playRandomMusic(false);
 			                          }
