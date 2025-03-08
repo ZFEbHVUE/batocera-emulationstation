@@ -4087,8 +4087,8 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		
 		        if (!songName.empty())
 		        {	        
-			    s->addWithDescription(_("SKIP TO THE NEXT SONG"),
-                      				_("NOW PLAYING") + ": " + songName,
+			    s->addWithDescription("\u202B" + _("SKIP TO THE NEXT SONG"),
+                      				"\u202B" + _("NOW PLAYING") + ": " + songName,
                       				{},
                       				[s, window]()
                       				{
@@ -4099,8 +4099,8 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                       				"iconSound");
 		
 		           
-		           s->addWithDescription(_("SAVE TO FAVORITE MUSIC"),
-			                      _("Copy current song to favorite folder"),
+		           s->addWithDescription("\u202B" + _("SAVE TO FAVORITE MUSIC"),
+			                      "\u202B" + _("Copy current song to favorite folder"),
 			                      {},
 			                      [window, currentSongPath]()
 			                      {
@@ -4236,7 +4236,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			_("NO"), nullptr));
 	}, "iconShutdown");
 
-	s->addWithDescription(_("FAST SHUTDOWN SYSTEM"), _("Shutdown without saving metadata."), nullptr, [window] {
+	s->addWithDescription("\u202B" + _("FAST SHUTDOWN SYSTEM"),"\u202B" + _("Shutdown without saving metadata."), nullptr, [window] {
 		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN WITHOUT SAVING METADATA?"), 
 			_("YES"), [] { Utils::Platform::quitES(Utils::Platform::QuitMode::FAST_SHUTDOWN); },
 			_("NO"), nullptr));
