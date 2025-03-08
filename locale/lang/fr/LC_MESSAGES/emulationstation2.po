@@ -2890,6 +2890,15 @@ msgstr "UTILISER OMX POUR L'ÉCRAN DE VEILLE"
 msgid "SHOW GAME INFO"
 msgstr "AFFICHER LES INFORMATIONS DU JEU"
 
+msgid "SHOW DATE TIME"
+msgstr "AFFICHE DATE HEURE"
+
+msgid "DATE FORMAT"
+msgstr "FORMAT DATE"
+
+msgid "TIME FORMAT"
+msgstr "FORMAT HEURE"
+
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "UTILISER LES LOGOS POUR LES INFOS JEU"
 
@@ -3165,6 +3174,9 @@ msgstr "LE CŒUR EST MANQUANT"
 
 msgid "UKNOWN ERROR"
 msgstr "ERREUR INCONNUE"
+
+msgid "Interlaced"
+msgstr "Entrelacé"
 
 msgid "all games"
 msgstr "tous les jeux"
