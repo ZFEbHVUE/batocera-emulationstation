@@ -115,18 +115,6 @@
 #define fake_gettext_resolution_max_1K  _("maximum 1920x1080")
 #define fake_gettext_resolution_max_640 _("maximum 640x480")
 
-namespace {
-    std::string readFileContent(const std::string &path)
-    {
-        std::ifstream ifs(path);
-        if (!ifs)
-            return "";
-        std::stringstream buffer;
-        buffer << ifs.rdbuf();
-        return buffer.str();
-    }
-}
-
 GuiMenu::GuiMenu(Window *window, bool animate) : GuiComponent(window), mMenu(window, _("MAIN MENU").c_str()), mVersion(window)
 {
 	// MAIN MENU
