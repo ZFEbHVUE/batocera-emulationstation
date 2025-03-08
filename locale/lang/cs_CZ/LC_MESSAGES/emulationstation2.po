@@ -2881,6 +2881,15 @@ msgstr "POUŽITÍ PŘEHRÁVAČE OMX PRO SPOŘIČ OBRAZOVKY"
 msgid "SHOW GAME INFO"
 msgstr "ZOBRAZIT INFO O HŘE"
 
+msgid "SHOW DATE TIME"
+msgstr "ZOBRAZIT DATUM ČAS"
+
+msgid "DATE FORMAT"
+msgstr "FORMÁT DATUMU"
+
+msgid "TIME FORMAT"
+msgstr "FORMÁT ČASU"
+
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "POUŽIJ MARQUEE JAKO INFORMACE O HŘE"
 
@@ -3158,6 +3167,9 @@ msgstr "CHYBÍ JÁDRO"
 
 msgid "UKNOWN ERROR"
 msgstr "NEZNÁMA CHYBA"
+
+msgid "Interlaced"
+msgstr "Prokládaný"
 
 msgid "all games"
 msgstr "všechny hry"
