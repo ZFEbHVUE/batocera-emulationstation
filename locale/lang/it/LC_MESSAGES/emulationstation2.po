@@ -2615,14 +2615,11 @@ msgstr "ROM UGUALE"
 msgid "UNAVAILABLE CORE"
 msgstr "CORE NON DISPONIBILE"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "GIOCA ONLINE COME HOST"
+msgid "LAN GAMES"
+msgstr "GIOCHI LAN"
 
-msgid "PLAY OFFLINE"
-msgstr "GIOCA OFFLINE"
-
-msgid "JOIN EXISTING GAME"
-msgstr "UNISCITI A GIOCO ESISTENTE"
+msgid "ONLINE GAMES"
+msgstr "GIOCHI ONLINE"
 
 msgid "AVAILABLE GAMES"
 msgstr "GIOCHI DISPONIBILI"
@@ -2705,6 +2702,12 @@ msgstr "MOSTRA LIVELLO BATTERIA DEL CONTROLLER"
 
 msgid "DRAW GUN CROSSHAIR"
 msgstr "DISEGNA MIRINO"
+
+msgid "BEHAVIOR"
+msgstr "COMPORTAMENTO"
+
+msgid "RESTRICT HOTKEYS TO EXIT"
+msgstr "LIMITA HOTKEYS ALL'USCITA"
 
 msgid "default"
 msgstr "default"
@@ -2882,6 +2885,15 @@ msgstr "UTILIZZA PLAYER OMX PER IL SALVASCHERMO"
 
 msgid "SHOW GAME INFO"
 msgstr "MOSTRA INFORMAZIONI DEL GIOCO"
+
+msgid "SHOW DATE TIME"
+msgstr "MOSTRA L'ORA"
+
+msgid "DATE FORMAT"
+msgstr "FORMATO DATA"
+
+msgid "TIME FORMAT"
+msgstr "FORMATO ORA"
 
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "USA BANNER COME INFO DI GIOCO"
@@ -3157,6 +3169,9 @@ msgstr "CORE MANCANTE"
 
 msgid "UKNOWN ERROR"
 msgstr "ERRORE SCONOSCIUTO"
+
+msgid "Interlaced"
+msgstr "Interlacciato"
 
 msgid "all games"
 msgstr "tutti i giochi"
