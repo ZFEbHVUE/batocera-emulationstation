@@ -2612,14 +2612,11 @@ msgstr "STEJNÁ ROM"
 msgid "UNAVAILABLE CORE"
 msgstr "NEDOSTUPNÉ JÁDRO"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "HRÁT ONLINE JAKO HOST"
+msgid "LAN GAMES"
+msgstr "HRY LOKÁLNÍ SÍTĚ"
 
-msgid "PLAY OFFLINE"
-msgstr "HRÁT OFFLINE"
-
-msgid "JOIN EXISTING GAME"
-msgstr "PŘIPOJIT SE K JIŽ EXISTUJÍCÍ HŘE"
+msgid "ONLINE GAMES"
+msgstr "ONLINE HRY"
 
 msgid "AVAILABLE GAMES"
 msgstr "DOSTUPNÉ HRY"
