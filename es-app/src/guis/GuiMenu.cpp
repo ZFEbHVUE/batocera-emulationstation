@@ -59,6 +59,7 @@
 #include "Gamelist.h"
 #include "TextToSpeech.h"
 #include "Paths.h"
+#include <set> 
 
 #if WIN32
 #include "Win32ApiSystem.h"
@@ -230,6 +231,13 @@ GuiMenu::GuiMenu(Window *window, bool animate) : GuiComponent(window), mMenu(win
 			setPosition((Renderer::getScreenWidth() - mSize.x()) / 2, Renderer::getScreenHeight() * 0.15f);
 	}
 }
+
+bool isRTLLanguage(const std::string& lang)
+{
+    static const std::set<std::string> rtlLanguages = { "ar", "fa", "he", "ur", "dv", "ps" };
+    return rtlLanguages.find(lang.substr(0, 2)) != rtlLanguages.end();
+}
+
 
 void GuiMenu::openScraperSettings()
 {		
@@ -4086,7 +4094,11 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		        std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 		
 		        if (!songName.empty())
-		        {	        
+		        {	
+			    std::string lang = Settings::getInstance()->getString("Language");
+			    bool isRTL = isRTLLanguage(lang);
+			    Alignment textAlignment = isRTL ? ALIGN_RIGHT : ALIGN_LEFT;
+				
 			    s->addWithDescription(_("SKIP TO THE NEXT SONG"),
                       				_("NOW PLAYING") + ": " + songName,
                       				{},
@@ -4096,7 +4108,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
                           			     AudioManager::getInstance()->playRandomMusic(false);
                           			     GuiMenu::openQuitMenu_static(w, true, false);
                       				},
-                      				"iconSound");
+                      				"iconSound",textAlignment);
 		
 		           
 		           s->addWithDescription(_("SAVE TO FAVORITE MUSIC"),
@@ -4142,7 +4154,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			                              window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
 			                          }
 			                      },
-			                      "iconFavorite");
+			                      "iconFavorite",textAlignment);
 
 		            std::string favoriteDir = Paths::getUserFavoriteMusicPath();
 			    std::string favoritesFile = favoriteDir + "favorites.txt";
@@ -4236,11 +4248,15 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			_("NO"), nullptr));
 	}, "iconShutdown");
 
+	std::string lang = Settings::getInstance()->getString("Language");
+	bool isRTL = isRTLLanguage(lang);
+	Alignment textAlignment = isRTL ? ALIGN_RIGHT : ALIGN_LEFT;
+	
 	s->addWithDescription(_("FAST SHUTDOWN SYSTEM"),_("Shutdown without saving metadata."), nullptr, [window] {
 		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN WITHOUT SAVING METADATA?"), 
 			_("YES"), [] { Utils::Platform::quitES(Utils::Platform::QuitMode::FAST_SHUTDOWN); },
 			_("NO"), nullptr));
-	}, "iconFastShutdown");
+	}, "iconFastShutdown",textAlignment);
 
 #ifdef WIN32
 	if (Settings::getInstance()->getBool("ShowExit"))
