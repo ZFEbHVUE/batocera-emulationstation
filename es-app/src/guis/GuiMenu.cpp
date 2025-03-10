@@ -4240,7 +4240,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN WITHOUT SAVING METADATA?"), 
 			_("YES"), [] { Utils::Platform::quitES(Utils::Platform::QuitMode::FAST_SHUTDOWN); },
 			_("NO"), nullptr));
-	}, "iconFastShutdown",textAlignment);
+	}, "iconFastShutdown");
 
 #ifdef WIN32
 	if (Settings::getInstance()->getBool("ShowExit"))
