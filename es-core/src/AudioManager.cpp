@@ -242,7 +242,7 @@ void AudioManager::playRandomMusic(bool continueIfPlaying)
 
     if (Settings::getInstance()->getBool("audio.useFavoriteMusic"))
     {
-        std::string favoritesFile = "/userdata/favorite_music/favorites.txt";
+        std::string favoritesFile = Paths::getUserFavoriteMusicPath() + "favorites.txt";
         auto favorites = loadFavoriteSongs(favoritesFile); 
 
         if (favorites.empty())
