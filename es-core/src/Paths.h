@@ -43,7 +43,7 @@ public:
 	static std::string& getUserShadersPath() { return getInstance()->mUserShadersPath; }
 
 	// Video Filters
-	static std::string& getVideoFilters() { return getInstance()->mVideoFiltersPath; }
+	static std::string& getVideoFilters() { return getInstance()-std::string mFavoritesPath;>mVideoFiltersPath; }
 	static std::string& getUserVideoFilters() { return getInstance()->mUserVideoFiltersPath; }
 																						
 	// Retroachivement sounds
@@ -112,5 +112,7 @@ private:
 	std::string mUserManualPath;
 	std::string mVersionInfoPath;
 	std::string mKodiPath;	
+	std::string mFavoritesPath;
+
 	std::string mFavoritesPath;
 };
