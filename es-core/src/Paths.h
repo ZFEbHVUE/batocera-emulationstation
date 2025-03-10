@@ -112,4 +112,5 @@ private:
 	std::string mUserManualPath;
 	std::string mVersionInfoPath;
 	std::string mKodiPath;	
+	std::string mFavoritesPath;
 };
