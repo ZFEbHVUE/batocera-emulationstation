@@ -61,6 +61,9 @@ Paths::Paths()
 	mUserManualPath = "/usr/share/batocera/doc/notice.pdf";
 	mVersionInfoPath = "/usr/share/batocera/batocera.version";
 	mKodiPath = "/usr/bin/kodi";
+	
+	mFavoritesPath = "/userdata/favorites.txt";
+	
 #endif
 
 /* EmuElec sample locations.
