@@ -43,7 +43,7 @@ public:
 	static std::string& getUserShadersPath() { return getInstance()->mUserShadersPath; }
 
 	// Video Filters
-	static std::string& getVideoFilters() { return getInstance()-std::string mFavoritesPath;>mVideoFiltersPath; }
+	static std::string& getVideoFilters() { return getInstance()->mVideoFiltersPath; }
 	static std::string& getUserVideoFilters() { return getInstance()->mUserVideoFiltersPath; }
 																						
 	// Retroachivement sounds
@@ -69,8 +69,8 @@ public:
 
 	static std::string findEmulationStationFile(const std::string& fileName);
 
-    static std::string getUserDataPath();
-    static std::string getUserFavoriteMusicPath();
+    	static std::string getUserDataPath();
+    	static std::string getUserFavoriteMusicPath();
 
 private:
 	static Paths* getInstance() 
