@@ -131,6 +131,8 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		{ "manual", &mUserManualPath },
 		{ "versioninfo", &mVersionInfoPath },
 		{ "kodi", &mKodiPath }
+		{ "favorites", &mFavoritesPath }
+	
 	};
 
 	std::map<std::string, std::string*> folders = 
