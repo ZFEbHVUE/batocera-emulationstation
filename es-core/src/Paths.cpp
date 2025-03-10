@@ -130,7 +130,7 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		{ "config", &mSystemConfFilePath },
 		{ "manual", &mUserManualPath },
 		{ "versioninfo", &mVersionInfoPath },
-		{ "kodi", &mKodiPath }
+		{ "kodi", &mKodiPath },
 		{ "favorites", &mFavoritesPath }
 	
 	};
