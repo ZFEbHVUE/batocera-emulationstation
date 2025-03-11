@@ -61,6 +61,9 @@ Paths::Paths()
 	mUserManualPath = "/usr/share/batocera/doc/notice.pdf";
 	mVersionInfoPath = "/usr/share/batocera/batocera.version";
 	mKodiPath = "/usr/bin/kodi";
+	
+	mFavoritesPath = "/userdata/favorites.txt";
+	
 #endif
 
 /* EmuElec sample locations.
@@ -127,7 +130,9 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		{ "config", &mSystemConfFilePath },
 		{ "manual", &mUserManualPath },
 		{ "versioninfo", &mVersionInfoPath },
-		{ "kodi", &mKodiPath }
+		{ "kodi", &mKodiPath },
+		{ "favorites", &mFavoritesPath }
+	
 	};
 
 	std::map<std::string, std::string*> folders = 
