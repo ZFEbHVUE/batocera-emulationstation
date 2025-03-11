@@ -4087,7 +4087,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		
 		        if (!songName.empty())
 		        {	
-			    s->addWithDescription(_("SKIP TO THE NEXT SONG"),
+			  s->addWithDescription(_("SKIP TO THE NEXT SONG"),
                       				_("NOW PLAYING") + ": " + songName,
                       				{},
                       				[s, window]()
@@ -4240,7 +4240,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		window->pushGui(new GuiMsgBox(window, _("REALLY SHUTDOWN WITHOUT SAVING METADATA?"), 
 			_("YES"), [] { Utils::Platform::quitES(Utils::Platform::QuitMode::FAST_SHUTDOWN); },
 			_("NO"), nullptr));
-	}, "iconFastShutdown";
+	}, "iconFastShutdown");
 
 #ifdef WIN32
 	if (Settings::getInstance()->getBool("ShowExit"))
