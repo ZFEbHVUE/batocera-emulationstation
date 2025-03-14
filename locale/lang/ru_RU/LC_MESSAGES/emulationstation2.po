@@ -2612,14 +2612,11 @@ msgstr "ОДИНАКОВЫЙ ROM"
 msgid "UNAVAILABLE CORE"
 msgstr "НЕДОСТУПНОЕ ЯДРО"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "ИГРАТЬ ОНЛАЙН В КАЧЕСТВЕ ХОСТА"
+msgid "LAN GAMES"
+msgstr "ИГРЫ ПО ЛОКАЛЬНОЙ СЕТИ"
 
-msgid "PLAY OFFLINE"
-msgstr "ИГРАТЬ ОФФЛАЙН"
-
-msgid "JOIN EXISTING GAME"
-msgstr "ПРИСОЕДИНИТЬСЯ К СУЩЕСТВУЮЩЕЙ ИГРЕ"
+msgid "ONLINE GAMES"
+msgstr "СЕТЕВЫЕ ИГРЫ"
 
 msgid "AVAILABLE GAMES"
 msgstr "ДОСТУПНЫЕ ИГРЫ"
@@ -2879,6 +2876,15 @@ msgstr "ИСПОЛЬЗОВАТЬ OMX ПЛЕЕР ДЛЯ ЗАСТАВКИ"
 
 msgid "SHOW GAME INFO"
 msgstr "ПОКАЗАТЬ ИНФОРМАЦИЮ ОБ ИГРЕ"
+
+msgid "SHOW DATE TIME"
+msgstr "ПОКАЗАТЬ ДАТУ И ВРЕМЯ"
+
+msgid "DATE FORMAT"
+msgstr "ФОРМАТ ДАТЫ"
+
+msgid "TIME FORMAT"
+msgstr "ФОРМАТ ВРЕМЕНИ"
 
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "ИСПОЛЬЗОВАТЬ БАНЕР КАК ИНФОРМАЦИЮ О ИГРЕ"
