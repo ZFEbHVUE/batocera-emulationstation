@@ -554,20 +554,11 @@ msgstr "TÙY CHỈNH"
 msgid "CUSTOM RELAY SERVER"
 msgstr "TÙY CHỈNH MÁY CHỦ CHUYỂN TIẾP"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "PUBLICLY ANNOUNCE GAME"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "MẬT KHẨU NGƯỜI CHƠI"
-
-msgid "VIEWER PASSWORD"
-msgstr "MẬT KHẨU NGƯỜI XEM"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "HIỂN THỊ TUỲ CHỌN NETPLAY KHI KHỞI CHẠY TRÒ CHƠI"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Cho phép chọn trực tuyến, ngoại tuyến, hoặc tham gia trò chơi khác."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "CHỈ HIỂN THỊ MÁY CHỦ TRÒ CHƠI CHUYỂN TIẾP"
@@ -3550,6 +3541,30 @@ msgid ""
 msgstr ""
 "HIỆU CHỈNH SÚNG\n"
 "Bắn vào mục tiêu để hiệu chỉnh"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "HIỂN THỊ TUỲ CHỌN NETPLAY KHI KHỞI CHẠY TRÒ CHƠI"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Cho phép chọn trực tuyến, ngoại tuyến, hoặc tham gia trò chơi khác."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Chọn một sảnh trò chơi để tạo hoặc tham gia"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "CHƠI TRỰC TUYẾN NHƯ CHỦ PHÒNG"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "CHƠI NGOẠI TUYẾN"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "THAM GIA TRÒ CHƠI HIỆN CÓ"
+
+#~ msgid "MATRIX"
+#~ msgstr "MA TRẬN"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "rgb dmd order"
 
 #~ msgid "SAVING METADATAS. PLEASE WAIT..."
 #~ msgstr "ĐANG LƯU SIÊU DỮ LIỆU. VUI LÒNG CHỜ..."
