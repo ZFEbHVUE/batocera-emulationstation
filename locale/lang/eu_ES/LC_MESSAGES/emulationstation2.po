@@ -546,19 +546,10 @@ msgstr ""
 msgid "CUSTOM RELAY SERVER"
 msgstr ""
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "JOKOA PUBLIKOKI IRAGARRI"
-
-msgid "PLAYER PASSWORD"
-msgstr "JOKALARI PASAHITZA"
-
-msgid "VIEWER PASSWORD"
-msgstr "IKUSI PASAHITZA"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+msgid "AUTOMATICALLY CREATE LOBBY"
 msgstr ""
 
-msgid "Allows choice of online, offline, or joining another game."
+msgid "Automatically creates a Netplay lobby when starting a game."
 msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
