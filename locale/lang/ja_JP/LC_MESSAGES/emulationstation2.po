@@ -2701,7 +2701,6 @@ msgstr "動作"
 msgid "RESTRICT HOTKEYS TO EXIT"
 msgstr "ホットキーの機能を制限(終了以外)"
 
-
 msgid "default"
 msgstr "標準"
 
