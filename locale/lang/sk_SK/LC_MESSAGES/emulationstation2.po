@@ -554,21 +554,11 @@ msgstr "Vlastné"
 msgid "CUSTOM RELAY SERVER"
 msgstr "Vlastný relay server"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "Verejne oznámiť hru"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "Heslo hráča"
-
-msgid "VIEWER PASSWORD"
-msgstr "Heslo prezerača"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "Zobraziť voľby sieťovej hry pri spustení hry"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Umožní vyber online, offline alebo pripojenie inej hry."
-
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "Zobraziť iba hry cez relay server"
 
@@ -3609,6 +3599,30 @@ msgid ""
 msgstr ""
 "Kalibrácia zbrane\n"
 "Vystreľte na cieľ na kalibráciu"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "Zobraziť voľby sieťovej hry pri spustení hry"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Umožní vyber online, offline alebo pripojenie inej hry."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Vyberte herné lobby na vytvorenie alebo pripojenie"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "Hrať online ako hostiteľ"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "Hrať offline"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "Pripojiť sa k hre"
+
+#~ msgid "MATRIX"
+#~ msgstr "Matica"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "poradie rgb dmd"
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
