@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: batocera-es v41b(2024/12/31)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-12-31 10:03+0900\n"
+"PO-Revision-Date: 2025-03-19 06:02+0900\n"
 "Last-Translator: mikakunin\n"
 "Language-Team: mikakunin\n"
 "Language: ja\n"
@@ -552,20 +552,11 @@ msgstr "カスタム"
 msgid "CUSTOM RELAY SERVER"
 msgstr "カスタムリレーサーバー"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "プレイ状況を公開する"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr "ロビーを自動的に作成"
 
-msgid "PLAYER PASSWORD"
-msgstr "プレーヤーパスワード"
-
-msgid "VIEWER PASSWORD"
-msgstr "ウォッチパスワード"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "ゲーム起動時にネットプレイ オプションを表示"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "オンライン、オフライン、別のゲームへの参加を選択できます"
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr "ゲームを開始時に、自動的にネットプレイ ロビーを作成します"
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "リレーサーバーゲームのみを表示"
@@ -2704,6 +2695,13 @@ msgstr "コントローラーバッテリーレベルを表示"
 msgid "DRAW GUN CROSSHAIR"
 msgstr "銃のクロスへア(照準)表示"
 
+msgid "BEHAVIOR"
+msgstr "動作"
+
+msgid "RESTRICT HOTKEYS TO EXIT"
+msgstr "ホットキーの機能を制限(終了以外)"
+
+
 msgid "default"
 msgstr "標準"
 
@@ -3589,6 +3587,30 @@ msgid ""
 msgstr ""
 "銃キャリブレーション\n"
 "ターゲットに発射して較正"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "ゲーム起動時にネットプレイ オプションを表示"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "オンライン、オフライン、別のゲームへの参加を選択できます"
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "作成または参加するゲーム ロビーを選択"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "ホストとしてオンラインでプレイ"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "オフラインでプレイ"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "既存のゲームに参加"
+
+#~ msgid "MATRIX"
+#~ msgstr "マトリクス"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "RGB DMD順"
 
 #~ msgid "FORGET A BLUETOOTH DEVICE"
 #~ msgstr "BLUETOOTH デバイスの削除"
