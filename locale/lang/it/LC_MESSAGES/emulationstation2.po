@@ -556,6 +556,7 @@ msgstr ""
 
 msgid "Automatically creates a Netplay lobby when starting a game."
 msgstr ""
+
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "MOSTRA SOLO I GIOCHI RELAY SERVER"
 
