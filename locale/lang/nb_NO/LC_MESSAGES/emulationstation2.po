@@ -551,20 +551,11 @@ msgstr "EGENDEFINERT"
 msgid "CUSTOM RELAY SERVER"
 msgstr "EGENDEFINERT RELAY SERVER"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "OFFENTLIG KUNNGJØR SPILLET"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "SPILLER PASSORD"
-
-msgid "VIEWER PASSWORD"
-msgstr "SEERPASSORD"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "VIS NETTSPILL-VALG VED OPPSTART AV SPILL"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Tillater valg av online, offline eller bli med i et annet spill."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "VIS KUN RELAY-SERVER SPILL"
@@ -3597,6 +3588,30 @@ msgid ""
 msgstr ""
 "KALIBRERER PISTOL\n"
 "Skyt på mål for å kalibrere"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "VIS NETTSPILL-VALG VED OPPSTART AV SPILL"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Tillater valg av online, offline eller bli med i et annet spill."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Velg en spill-lobby å lage eller bli med i"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "SPILL ONLINE SOM VERT"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "SPILL OFFLINE"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "BLI MED I EKSISTERENDE SPILL"
+
+#~ msgid "MATRIX"
+#~ msgstr "MATRISE"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "rgb dmd rekkefølge"
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
