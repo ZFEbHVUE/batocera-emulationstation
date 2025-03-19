@@ -553,6 +553,7 @@ msgstr "自动创建大厅"
 
 msgid "Automatically creates a Netplay lobby when starting a game."
 msgstr "开始游戏时自动创建网络游戏大厅."
+
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "仅显示中继服务器游戏"
 
