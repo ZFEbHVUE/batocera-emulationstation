@@ -550,20 +550,11 @@ msgstr "VLASTNÍ"
 msgid "CUSTOM RELAY SERVER"
 msgstr "VLASTNÍ RELAY SERVER"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "VEŘEJNĚ OZNÁMIT HRU"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "HESLO HRÁČE"
-
-msgid "VIEWER PASSWORD"
-msgstr "HESLO PROHLÍŽEČE"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "ZOBRAZIT MOŽNOSTI NETPLAY PŘI SPUŠTĚNÍ HRY"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Umožňuje volbu online, offline nebo připojení k jiné hře."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "ZOBRAZIT POUZE HRY SERVERU RELAY"
@@ -3626,6 +3617,30 @@ msgid ""
 msgstr ""
 "KALIBRACE ZBRANĚ\n"
 "Střelba na cíle pro kalibraci"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "ZOBRAZIT MOŽNOSTI NETPLAY PŘI SPUŠTĚNÍ HRY"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Umožňuje volbu online, offline nebo připojení k jiné hře."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Vyberte herní lobby, kterou chcete vytvořit nebo se k ní připojit"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "HRÁT ONLINE JAKO HOST"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "HRÁT OFFLINE"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "PŘIPOJIT SE K JIŽ EXISTUJÍCÍ HŘE"
+
+#~ msgid "MATRIX"
+#~ msgstr "MATRIX"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "pořadí rgb dmd"
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
