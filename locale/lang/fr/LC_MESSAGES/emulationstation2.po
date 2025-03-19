@@ -549,20 +549,11 @@ msgstr "PERSONNALISÉ"
 msgid "CUSTOM RELAY SERVER"
 msgstr "SERVEUR RELAI PERSONNALISÉ"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "ANNONCER PUBLIQUEMENT LA PARTIE"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "MOT DE PASSE JOUEUR"
-
-msgid "VIEWER PASSWORD"
-msgstr "MOT DE PASSE SPECTATEUR"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "OPTIONS DES PARTIES EN RÉSEAU AU LANCEMENT D'UN JEU"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Permettre de choisir de jouer en ligne, hors ligne."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "AFFICHER SEUELEMENT LE SERVEUR RELAIS DES JEUX"
@@ -3619,6 +3610,30 @@ msgid ""
 msgstr ""
 "CALIBRATION DU PISTOLET\n"
 "Tirer sur les cibles pour calibrer"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "OPTIONS DES PARTIES EN RÉSEAU AU LANCEMENT D'UN JEU"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Permettre de choisir de jouer en ligne, hors ligne."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Choisir la partie à créer ou rejoindre"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "JOUER EN LIGNE EN HÔTE"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "JOUER HORS LIGNE"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "REJOINDRE UNE PARTIE EXISTANTE"
+
+#~ msgid "MATRIX"
+#~ msgstr "MATRICE"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "ordre des couleurs du dmd"
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
