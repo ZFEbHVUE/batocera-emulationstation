@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: emulationstation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-15 23:48+0100\n"
-"PO-Revision-Date: 2025-01-06 15:09+0000\n"
+"PO-Revision-Date: 2025-03-17 10:48+0000\n"
 "Last-Translator: THa MuSHeR\n"
 "Language-Team: Dutch (Netherlands)\n"
 "Language: nl-NL\n"
@@ -551,20 +551,11 @@ msgstr "AANGEPAST"
 msgid "CUSTOM RELAY SERVER"
 msgstr "AANGEPASTE RELAY SERVER"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "EEN SPEL PUBLIEKELIJK AANKONDIGEN"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr "AUTOMATISCH EEN LOBBY MAKEN"
 
-msgid "PLAYER PASSWORD"
-msgstr "SPELER WACHTWOORD"
-
-msgid "VIEWER PASSWORD"
-msgstr "TOESCHOUWER WACHTWOORD"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "TOON NETPLAY-OPTIES BIJ HET STARTEN VAN HET SPEL"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Biedt de keuze tussen online, offline of deelnemen aan een ander spel."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr "Creëert automatisch een Netplay-lobby wanneer u een spel start."
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "ALLEEN RELAY SERVER SPELLEN TONEN"
@@ -2632,14 +2623,11 @@ msgstr "DEZELFDE ROM"
 msgid "UNAVAILABLE CORE"
 msgstr "NIET-BESCHIKBARE CORE"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "SPEEL ONLINE ALS HOST"
+msgid "LAN GAMES"
+msgstr "LAN SPELLEN"
 
-msgid "PLAY OFFLINE"
-msgstr "SPEEL OFFLINE"
-
-msgid "JOIN EXISTING GAME"
-msgstr "DOE MEE AAN EEN BESTAAND SPEL"
+msgid "ONLINE GAMES"
+msgstr "ONLINE SPELLEN"
 
 msgid "AVAILABLE GAMES"
 msgstr "BESCHIKBARE SPELLEN"
@@ -2900,6 +2888,15 @@ msgstr "GEBRUIK OMX SPELER VOOR SCHERMBEVEILIGING"
 
 msgid "SHOW GAME INFO"
 msgstr "TOON SPELINFO"
+
+msgid "SHOW DATE TIME"
+msgstr "DATUM EN TIJD WEERGEVEN"
+
+msgid "DATE FORMAT"
+msgstr "DATUM FORMAT"
+
+msgid "TIME FORMAT"
+msgstr "TIJD FORMAT"
 
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "GEBRUIK MARQUEE ALS SPELINFO"
