@@ -551,20 +551,11 @@ msgstr "ПОЛЬЗОВАТЕЛЬСКИЙ"
 msgid "CUSTOM RELAY SERVER"
 msgstr "ПОЛЬЗОВАТЕЛЬСКИЙ RELAY-СЕРВЕР"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "ПУБЛИЧНО АНОНСИРУЕМАЯ ИГРА"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr ""
 
-msgid "PLAYER PASSWORD"
-msgstr "ПАРОЛЬ ИГРОКА"
-
-msgid "VIEWER PASSWORD"
-msgstr "ПАРОЛЬ ЗРИТЕЛЯ"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "ПОКАЗЫВАТЬ NETPLAY ОПЦИИ ПРИ ЗАПУСКЕ ИГРЫ"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Позволяет выбрать онлайн, офлайн или присоединиться к другой игре."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "ПОКАЗАТЬ ТОЛЬКО ИГРЫ RELAY-СЕРВЕРА"
@@ -3615,6 +3606,31 @@ msgid ""
 msgstr ""
 "КАЛИБРОВКА ПИСТОЛЕТА\n"
 "Стреляйте по мишеням для калибровки"
+
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "ПОКАЗЫВАТЬ NETPLAY ОПЦИИ ПРИ ЗАПУСКЕ ИГРЫ"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr "Позволяет выбрать онлайн, офлайн или присоединиться к другой игре."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "Выберите игровое лобби, чтобы создать или присоединиться к нему"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "ИГРАТЬ ОНЛАЙН В КАЧЕСТВЕ ХОСТА"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "ИГРАТЬ ОФФЛАЙН"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "ПРИСОЕДИНИТЬСЯ К СУЩЕСТВУЮЩЕЙ ИГРЕ"
+
+#~ msgid "MATRIX"
+#~ msgstr "МАТРИЦА"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "порядок rgb dmd"
+
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
