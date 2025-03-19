@@ -3647,6 +3647,32 @@ msgstr ""
 "معايرة المسدس\n"
 "أطلق النار على الأهداف للمعايرة"
 
+#~ msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
+#~ msgstr "إظهار خيارات نت بلاي عند تشغيل اللعبة"
+
+#~ msgid "Allows choice of online, offline, or joining another game."
+#~ msgstr ""
+#~ "يسمح باختيار اللعب عبر الإنترنت، أو اللعب دون اتصال بالإنترنت، أو "
+#~ "الانضمام إلى لعبة أخرى."
+
+#~ msgid "Select a game lobby to create or join"
+#~ msgstr "حدد مجموعة ألعاب لإنشائها أو الانضمام إليها"
+
+#~ msgid "PLAY ONLINE AS HOST"
+#~ msgstr "العب عبر الإنترنت كمضيف"
+
+#~ msgid "PLAY OFFLINE"
+#~ msgstr "العب بلا اتصال بالإنترنت"
+
+#~ msgid "JOIN EXISTING GAME"
+#~ msgstr "انضم إلى اللعبة الحالية"
+
+#~ msgid "MATRIX"
+#~ msgstr "مصفوفة"
+
+#~ msgid "rgb dmd order"
+#~ msgstr "طلب RGB دي ام دي"
+
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
 #~ "إعادة تعيين قيم وقت اللعبة وعدد مرات اللعب والبيانات الوصفية لآخر مرة تم "
