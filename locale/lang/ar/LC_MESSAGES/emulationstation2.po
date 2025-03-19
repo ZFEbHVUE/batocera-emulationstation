@@ -587,22 +587,11 @@ msgstr "مخصص"
 msgid "CUSTOM RELAY SERVER"
 msgstr "خادم التتابع المخصص"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "الإعلان عن اللعبة للجماهير"
-
-msgid "PLAYER PASSWORD"
-msgstr "كلمة سر اللاعب"
-
-msgid "VIEWER PASSWORD"
-msgstr "كلمة سر المتفرج"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "إظهار خيارات نت بلاي عند تشغيل اللعبة"
-
-msgid "Allows choice of online, offline, or joining another game."
+msgid "AUTOMATICALLY CREATE LOBBY"
 msgstr ""
-"يسمح باختيار اللعب عبر الإنترنت، أو اللعب دون اتصال بالإنترنت، أو الانضمام إلى "
-"لعبة أخرى."
+
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr ""
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
 msgstr "عرض ألعاب خادم التتابع فقط"
