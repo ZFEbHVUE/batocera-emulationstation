@@ -549,28 +549,17 @@ msgstr "PERSONALIZADO"
 msgid "CUSTOM RELAY SERVER"
 msgstr "SERVIDOR DE RELÉ PERSONALIZADO"
 
-msgid "PUBLICLY ANNOUNCE GAME"
-msgstr "ANUNCIAR PUBLICAMENTE O JOGO"
+msgid "AUTOMATICALLY CREATE LOBBY"
+msgstr "CRIAR LOBBY AUTOMATICAMENTE"
 
-msgid "PLAYER PASSWORD"
-msgstr "PASSWORD DO JOGADOR"
-
-msgid "VIEWER PASSWORD"
-msgstr "PASSWORD DO ESPECTADOR"
-
-msgid "SHOW NETPLAY OPTIONS WHEN LAUNCHING GAME"
-msgstr "MOSTRAR OPÇÕES DE NETPLAY AO INICIAR O JOGO"
-
-msgid "Allows choice of online, offline, or joining another game."
-msgstr "Permite escolher entre online, offline ou aderir a outro jogo."
+msgid "Automatically creates a Netplay lobby when starting a game."
+msgstr "Criar automaticamente um lobby Netplay ao iniciar um jogo."
 
 msgid "SHOW RELAY SERVER GAMES ONLY"
-msgstr "MOSTRAR APENAS JOGOS DO SERVIDOR RELAY"
+msgstr "MOSTRAR APENAS JOGOS DO SERVIDOR DE RELAY"
 
 msgid "Relay server games have a higher chance of successful entry."
-msgstr ""
-"Os jogos de servidor relay têm uma maior probabilidade de entrada bem-"
-"sucedida."
+msgstr "Os jogos de servidor de relay têm uma maior probabilidade de entrada bem-sucedida."
 
 msgid "SHOW UNAVAILABLE GAMES"
 msgstr "MOSTRAR JOGOS INDISPONÍVEIS"
