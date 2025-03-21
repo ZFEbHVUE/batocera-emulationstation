@@ -26,6 +26,9 @@ public:
 	static std::string& getMusicPath() { return getInstance()->mMusicPath; }
 	static std::string& getUserMusicPath() { return getInstance()->mUserMusicPath; }
 
+	static std::string& getFavoriteMusicPath() { return getInstance()->mFavoriteMusicPath; }
+	static std::string& getUserFavoriteMusicPath() { return getInstance()->mUserFavoriteMusicPath; }
+
 	// Themes
 	static std::string& getThemesPath() { return getInstance()->mThemesPath; }
 	static std::string& getUserThemesPath() { return getInstance()->mUserThemesPath; }
@@ -113,4 +116,6 @@ private:
 	std::string mVersionInfoPath;
 	std::string mKodiPath;	
 	std::string mFavoritesPath;
+	std::string mFavoriteMusicPath;
+	std::string mUserFavoriteMusicPath;
 };
