@@ -114,16 +114,6 @@ std::string Paths::getUserDataPath()
 #endif
 }
 
-std::string Paths::getUserFavoriteMusicPath()
-{
-#ifdef WIN32
-    return getUserDataPath() + "favorite_music\\";
-#else
-    return getUserDataPath() + "favorite_music/";
-#endif
-}
-
-
 void Paths::loadCustomConfiguration(bool overridesOnly)
 {
 	// Files
