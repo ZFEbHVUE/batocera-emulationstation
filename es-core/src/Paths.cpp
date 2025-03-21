@@ -146,6 +146,8 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		{ "saves", &mSaveStatesPath },
 		{ "system.music", &mMusicPath },
 		{ "music", &mUserMusicPath },
+		{ "system.favoritemusic", &mFavoriteMusicPath },
+		{ "favoritemusic", &mUserFavoriteMusicPath },
 		{ "system.themes", &mThemesPath },
 		{ "themes", &mUserThemesPath },
 		{ "system.padtokey", &mKeyboardMappingsPath },
