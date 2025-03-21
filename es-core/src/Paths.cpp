@@ -45,6 +45,8 @@ Paths::Paths()
 	mSaveStatesPath = "/userdata/saves";
 	mMusicPath = "/usr/share/batocera/music";
 	mUserMusicPath = "/userdata/music";
+	mFavoriteMusicPath = "/usr/share/batocera/favorite_music";
+	mUserFavoriteMusicPath = "/userdata/favorite_music";
 	mThemesPath = "/usr/share/emulationstation/themes";
 	mUserThemesPath = "/userdata/themes";
 	mKeyboardMappingsPath = "/usr/share/evmapy";
