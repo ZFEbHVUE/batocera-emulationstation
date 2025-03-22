@@ -45,6 +45,8 @@ Paths::Paths()
 	mSaveStatesPath = "/userdata/saves";
 	mMusicPath = "/usr/share/batocera/music";
 	mUserMusicPath = "/userdata/music";
+	mFavoriteMusicPath = "/usr/share/batocera/favorite_music";
+	mUserFavoriteMusicPath = "/userdata/favorite_music";
 	mThemesPath = "/usr/share/emulationstation/themes";
 	mUserThemesPath = "/userdata/themes";
 	mKeyboardMappingsPath = "/usr/share/evmapy";
@@ -112,16 +114,6 @@ std::string Paths::getUserDataPath()
 #endif
 }
 
-std::string Paths::getUserFavoriteMusicPath()
-{
-#ifdef WIN32
-    return getUserDataPath() + "favorite_music\\";
-#else
-    return getUserDataPath() + "favorite_music/";
-#endif
-}
-
-
 void Paths::loadCustomConfiguration(bool overridesOnly)
 {
 	// Files
@@ -144,6 +136,8 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		{ "saves", &mSaveStatesPath },
 		{ "system.music", &mMusicPath },
 		{ "music", &mUserMusicPath },
+		{ "system.favoritemusic", &mFavoriteMusicPath },
+		{ "favoritemusic", &mUserFavoriteMusicPath },
 		{ "system.themes", &mThemesPath },
 		{ "themes", &mUserThemesPath },
 		{ "system.padtokey", &mKeyboardMappingsPath },
