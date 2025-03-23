@@ -64,7 +64,11 @@ Paths::Paths()
 	mVersionInfoPath = "/usr/share/batocera/batocera.version";
 	mKodiPath = "/usr/bin/kodi";
 	
-	mFavoritesPath = mUserFavoriteMusicPath + "/favorites.txt";
+	if (!mUserFavoriteMusicPath.empty() && mUserFavoriteMusicPath.back() != '/')
+		mFavoritesPath = mUserFavoriteMusicPath + "/favorites.txt";
+	else
+		mFavoritesPath = mUserFavoriteMusicPath + "favorites.txt";
+
 	
 #endif
 
