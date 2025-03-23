@@ -64,7 +64,7 @@ Paths::Paths()
 	mVersionInfoPath = "/usr/share/batocera/batocera.version";
 	mKodiPath = "/usr/bin/kodi";
 	
-	mFavoritesPath = "/userdata/favorites.txt";
+	mFavoritesPath = Utils::FileSystem::join(mUserFavoriteMusicPath, "favorites.txt");
 	
 #endif
 
