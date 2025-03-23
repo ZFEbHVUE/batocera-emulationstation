@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: batocera-es v41b(2024/12/31)\n"
+"Project-Id-Version: batocera-es v42b(2025/03/01)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2025-03-19 06:02+0900\n"
@@ -490,7 +490,7 @@ msgid "SAVE CHANGES?"
 msgstr "変更を保存しますか？"
 
 msgid "ARE YOU SURE?"
-msgstr "よろしいですか？"
+msgstr "確認チェック"
 
 msgid "INFORMATION"
 msgstr "情報"
@@ -679,7 +679,7 @@ msgid "SHOW RETROACHIEVEMENTS ENTRY IN MAIN MENU"
 msgstr "メインメニューにRETROACHIEVEMENTSエントリを表示"
 
 msgid "View your RetroAchievement stats right from the main menu!"
-msgstr "メインメニューにRETROACHIEVEMENTSの統計を表示します!"
+msgstr "メニューにRETROACHIEVEMENTSの統計を表示します!"
 
 msgid "UNABLE TO ACTIVATE RETROACHIEVEMENTS:"
 msgstr "RETROACHIEVEMENTSを有効にできません:"
@@ -1066,12 +1066,6 @@ msgstr "自動"
 msgid "dmd matrix size"
 msgstr "DMDマトリクスサイズ"
 
-msgid "MATRIX"
-msgstr "マトリクス"
-
-msgid "rgb dmd order"
-msgstr "RGB DMD順"
-
 msgid "BRIGHTNESS"
 msgstr "輝度"
 
@@ -1257,8 +1251,8 @@ msgstr "ゲームリストを更新しない"
 
 msgid "Debug tool: Don't check if the ROMs actually exist. Can cause problems!"
 msgstr ""
-"デバッグツール：ROMがある場合はチェックしないでください。問題が出る場合があり"
-"ます！"
+"デバッグツール：ROM の有無をチェックしません\n"
+"問題が出る可能性があります！"
 
 msgid "SEARCH FOR LOCAL ART"
 msgstr "ローカルアートの検索"
@@ -1267,8 +1261,8 @@ msgid ""
 "If no image is specified in the gamelist, try to find media with the same "
 "filename to use."
 msgstr ""
-"ゲームリストにイメージ画像の指定が無い場合は、同じファイル名の画像を検索しま"
-"す"
+"gamelist.xmlにイメージ画像の指定が無い場合、\n"
+"同じファイル名の画像を検索し設定します"
 
 msgid "USER INTERFACE"
 msgstr "ユーザーインターフェイス"
@@ -1344,7 +1338,8 @@ msgid ""
 "Reduces lag when scrolling through a fully scraped gamelist, increases boot "
 "time"
 msgstr ""
-"スクレイプ済みゲームリストのスクロール時のラグを減少(起動時間が長くなります)"
+"スクレイプ済みゲームリストのスクロール時のラグを減少\n"
+"(起動時間が長くなります)"
 
 msgid "THREADED LOADING"
 msgstr "スレッド読み込み(CPUコアが複数ある場合)"
@@ -1457,8 +1452,8 @@ msgstr "ハードウェア"
 
 msgid "Sets the display's resolution for emulationstation."
 msgstr ""
-"Emulationstationで表示する解像度を設定します(自動＝最大)\n"
-"動作に問題がある場合は1920x1080以下を試してください"
+"ESで表示する解像度を設定します(自動＝最大)\n"
+"問題がでる場合は1920x1080以下を試してください"
 
 msgid "AUDIO OUTPUT"
 msgstr "音声出力"
@@ -1467,7 +1462,7 @@ msgid "AUDIO PROFILE"
 msgstr "音声プロファイル"
 
 msgid "Available options can change depending on current audio output."
-msgstr "使用可能な設定は、現在の音声出力に応じて変わる可能性があります"
+msgstr "現在の音声出力設定に応じて設定項目が変わる場合があります"
 
 msgid "BOOT SPLASH"
 msgstr "ブートスプラッシュ映像"
@@ -1634,15 +1629,15 @@ msgid "SAVESTATES"
 msgstr "ステートセーブ"
 
 msgid "AUTO SAVE/LOAD"
-msgstr "自動ステート保存/読込み"
+msgstr "自動ステートセーブ/読込み"
 
 msgid "Load latest savestate on game launch and savestate when exiting game."
 msgstr ""
-"ゲーム開始時にステートを読込み、終了時にステートセーブします\n"
-"(ステートセーブ保存方法－「ゲームごとにセーブ」に設定)"
+"開始時にステート読込み、終了時にステートセーブします\n"
+"(ステートセーブの方法－「ゲームごとにセーブ」を指定)"
 
 msgid "INCREMENTAL SAVESTATES"
-msgstr "ステートセーブ保存方法"
+msgstr "ステートセーブの方法"
 
 msgid "INCREMENT PER SAVE"
 msgstr "常に別スロットにセーブ"
@@ -1694,8 +1689,7 @@ msgid "REWIND"
 msgstr "巻き戻し"
 
 msgid "Store past states to rewind to in realtime, if the core supports it."
-msgstr ""
-"コアが対応している場合は、過去の状態を保存してリアルタイムで巻き戻します"
+msgstr "コアが対応している場合は、過去の状態を保存してすぐ巻き戻します"
 
 msgid "INTEGER SCALING (PIXEL PERFECT)"
 msgstr "整数スケール (ピクセルを正方形表示)"
@@ -2217,6 +2211,15 @@ msgstr "ゲームを開始"
 msgid "HOST A NETPLAY GAME"
 msgstr "ネットプレイ(ホストで)を開始"
 
+msgid "PUBLICLY ANNOUNCE GAME"
+msgstr "プレイ状況を公開する"
+
+msgid "PLAYER PASSWORD"
+msgstr "プレーヤーパスワード"
+
+msgid "VIEWER PASSWORD"
+msgstr "ウォッチパスワード"
+
 msgid "FIND SIMILAR GAMES..."
 msgstr "類似のゲームを探す..."
 
@@ -2230,7 +2233,7 @@ msgid ""
 "THIS WILL DELETE THE ACTUAL GAME FILE(S)!\n"
 "ARE YOU SURE?"
 msgstr ""
-"この操作は実際にファイルを削除します！\n"
+"これは実際にファイルを削除します！\n"
 "実行しますか？"
 
 msgid "COLLECTIONS"
@@ -2585,9 +2588,6 @@ msgstr "ネットプレイの接続"
 msgid "Select a game lobby to join"
 msgstr "参加したいゲームロビーを選択"
 
-msgid "Select a game lobby to create or join"
-msgstr "作成または参加するゲーム ロビーを選択"
-
 msgid "FAILED"
 msgstr "失敗"
 
@@ -2603,14 +2603,11 @@ msgstr "同じROM"
 msgid "UNAVAILABLE CORE"
 msgstr "利用できないコア"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "ホストとしてオンラインでプレイ"
+msgid "LAN GAMES"
+msgstr "LAN ゲーム"
 
-msgid "PLAY OFFLINE"
-msgstr "オフラインでプレイ"
-
-msgid "JOIN EXISTING GAME"
-msgstr "既存のゲームに参加"
+msgid "ONLINE GAMES"
+msgstr "オンライン ゲーム"
 
 msgid "AVAILABLE GAMES"
 msgstr "参加可能なゲーム"
@@ -2878,6 +2875,15 @@ msgstr "スクリーンセーバーにOMX PLAYERを使用"
 msgid "SHOW GAME INFO"
 msgstr "ゲーム情報を表示"
 
+msgid "SHOW DATE TIME"
+msgstr "日時を表示"
+
+msgid "DATE FORMAT"
+msgstr "日付表示形式"
+
+msgid "TIME FORMAT"
+msgstr "時刻表示形式"
+
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "ゲーム情報としてマーキーを使用"
 
@@ -3033,8 +3039,7 @@ msgid ""
 "FORMAT.\n"
 "DO YOU WANT TO LAUNCH IT ANYWAY?"
 msgstr ""
-"警告：このゲームのファイル形式は、 現在のエミュレータ/コアでは対応していませ"
-"ん。\n"
+"警告：このファイル形式は、指定エミュレータ/コアが未対応です\n"
 "実行しますか?"
 
 msgid ""
@@ -3042,7 +3047,7 @@ msgid ""
 "CORRECTLY.\n"
 "DO YOU WANT TO LAUNCH IT ANYWAY?"
 msgstr ""
-"警告：システムにBIOSがなく、ゲームが動作しない可能性があります\n"
+"警告：システムBIOSがなく、ゲームが動作しない可能性があります\n"
 "実行しますか?"
 
 msgid "Preloading UI"
@@ -3149,6 +3154,9 @@ msgstr "コアがありません"
 
 msgid "UKNOWN ERROR"
 msgstr "不明なエラー"
+
+msgid "Interlaced"
+msgstr "インターレース"
 
 msgid "all games"
 msgstr "すべてのゲーム"
