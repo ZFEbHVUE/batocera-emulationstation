@@ -1067,12 +1067,6 @@ msgstr "AUTO"
 msgid "dmd matrix size"
 msgstr "taille de la matrice dmd"
 
-msgid "MATRIX"
-msgstr "MATRICE"
-
-msgid "rgb dmd order"
-msgstr "ordre des couleurs du dmd"
-
 msgid "BRIGHTNESS"
 msgstr "LUMINOSITÉ"
 
@@ -2227,6 +2221,15 @@ msgstr "DÉMARRER LE JEU"
 msgid "HOST A NETPLAY GAME"
 msgstr "HÉBERGER UNE PARTIE EN RÉSEAU"
 
+msgid "PUBLICLY ANNOUNCE GAME"
+msgstr "ANNONCER PUBLIQUEMENT LA PARTIE"
+
+msgid "PLAYER PASSWORD"
+msgstr "MOT DE PASSE JOUEUR"
+
+msgid "VIEWER PASSWORD"
+msgstr "MOT DE PASSE SPECTATEUR"
+
 msgid "FIND SIMILAR GAMES..."
 msgstr "TROUVER LES JEUX SIMILAIRES…"
 
@@ -2594,9 +2597,6 @@ msgstr "REJOINDRE UNE PARTIE EN RÉSEAU"
 msgid "Select a game lobby to join"
 msgstr "Choisir la partie à rejoindre"
 
-msgid "Select a game lobby to create or join"
-msgstr "Choisir la partie à créer ou rejoindre"
-
 msgid "FAILED"
 msgstr "ÉCHEC"
 
@@ -2700,6 +2700,12 @@ msgstr "AFFICHER LE NIVEAU DE BATTERIE DES MANETTES"
 
 msgid "DRAW GUN CROSSHAIR"
 msgstr "DESSINER LA MIRE DU PISTOLET"
+
+msgid "BEHAVIOR"
+msgstr "COMPORTEMENT"
+
+msgid "RESTRICT HOTKEYS TO EXIT"
+msgstr "RESTREINDRE LES HOTKEYS À EXIT"
 
 msgid "default"
 msgstr "par défaut"
