@@ -1,3 +1,4 @@
+// Paths.h
 #pragma once
 
 #include <string>
@@ -12,59 +13,53 @@ public:
 
 	// config storage
 	static std::string& getSystemConfFilePath() { return getInstance()->mSystemConfFilePath; }
-	
+
 	// Logs
 	static std::string& getLogPath() { return getInstance()->mLogPath; }
 
 	// Screenshots
-	static std::string& getScreenShotPath() { return getInstance()->mScreenShotsPath; } 
-																		
+	static std::string& getScreenShotPath() { return getInstance()->mScreenShotsPath; }
+
 	// Savestates
-	static std::string& getSavesPath() { return getInstance()->mSaveStatesPath; } 
-																   
+	static std::string& getSavesPath() { return getInstance()->mSaveStatesPath; }
+
 	// Music
 	static std::string& getMusicPath() { return getInstance()->mMusicPath; }
 	static std::string& getUserMusicPath() { return getInstance()->mUserMusicPath; }
-
-	static std::string& getFavoriteMusicPath() { return getInstance()->mFavoriteMusicPath; }
-	static std::string& getUserFavoriteMusicPath() { return getInstance()->mUserFavoriteMusicPath; }
-	static std::string& getFavoritesMusicFilePath() { return getInstance()->mFavoritesPath; }
 
 	// Themes
 	static std::string& getThemesPath() { return getInstance()->mThemesPath; }
 	static std::string& getUserThemesPath() { return getInstance()->mUserThemesPath; }
 
 	// Keyboard mappings
-	static std::string& getKeyboardMappingsPath() { return getInstance()->mKeyboardMappingsPath; } 
-	static std::string& getUserKeyboardMappingsPath() { return getInstance()->mUserKeyboardMappingsPath; } 
+	static std::string& getKeyboardMappingsPath() { return getInstance()->mKeyboardMappingsPath; }
+	static std::string& getUserKeyboardMappingsPath() { return getInstance()->mUserKeyboardMappingsPath; }
 
 	// Decorations
-	static std::string& getDecorationsPath() { return getInstance()->mDecorationsPath; } 
-	static std::string& getUserDecorationsPath() { return getInstance()->mUserDecorationsPath; } 
+	static std::string& getDecorationsPath() { return getInstance()->mDecorationsPath; }
+	static std::string& getUserDecorationsPath() { return getInstance()->mUserDecorationsPath; }
 
 	// Shaders
-	static std::string& getShadersPath() { return getInstance()->mShadersPath; } 
+	static std::string& getShadersPath() { return getInstance()->mShadersPath; }
 	static std::string& getUserShadersPath() { return getInstance()->mUserShadersPath; }
 
 	// Video Filters
 	static std::string& getVideoFilters() { return getInstance()->mVideoFiltersPath; }
 	static std::string& getUserVideoFilters() { return getInstance()->mUserVideoFiltersPath; }
-																						
+
 	// Retroachivement sounds
-	static std::string& getRetroachivementSounds() { return getInstance()->mRetroachivementSounds; } 
-	static std::string& getUserRetroachivementSounds() { return getInstance()->mUserRetroachivementSounds; } 
+	static std::string& getRetroachivementSounds() { return getInstance()->mRetroachivementSounds; }
+	static std::string& getUserRetroachivementSounds() { return getInstance()->mUserRetroachivementSounds; }
 
 	// Emulationstation
 	static std::string& getEmulationStationPath() { return getInstance()->mEmulationStationPath; }
 	static std::string& getUserEmulationStationPath() { return getInstance()->mUserEmulationStationPath; }
 
 	static std::string& getTimeZonesPath() { return getInstance()->mTimeZonesPath; }
-		
 	static std::string& getVersionInfoPath() { return getInstance()->mVersionInfoPath; }
 	static std::string& getUserManualPath() { return getInstance()->mUserManualPath; }
-
 	static std::string& getKodiPath() { return getInstance()->mKodiPath; }
-	
+
 	static std::string& getHomePath();
 	static void setHomePath(const std::string& _path);
 
@@ -72,15 +67,13 @@ public:
 	static void setExePath(const std::string& _path);
 
 	static std::string findEmulationStationFile(const std::string& fileName);
+	static std::string getUserDataPath();
 
-    	static std::string getUserDataPath();
-    	
 private:
-	static Paths* getInstance() 
+	static Paths* getInstance()
 	{
 		if (_instance == nullptr)
 			_instance = new Paths();
-
 		return _instance;
 	}
 
@@ -107,15 +100,10 @@ private:
 	std::string mUserVideoFiltersPath;
 	std::string mEmulationStationPath;
 	std::string mUserEmulationStationPath;
-
 	std::string mTimeZonesPath;
 	std::string mRetroachivementSounds;
 	std::string mUserRetroachivementSounds;
-
 	std::string mUserManualPath;
 	std::string mVersionInfoPath;
-	std::string mKodiPath;	
-	std::string mFavoritesPath;
-	std::string mFavoriteMusicPath;
-	std::string mUserFavoriteMusicPath;
+	std::string mKodiPath;
 };
