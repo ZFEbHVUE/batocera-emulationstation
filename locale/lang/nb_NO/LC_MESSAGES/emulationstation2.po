@@ -1,4 +1,4 @@
-sgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: emulationstation\n"
 "Report-Msgid-Bugs-To: \n"
