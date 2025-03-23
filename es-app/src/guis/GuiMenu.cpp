@@ -4076,7 +4076,9 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 	s->setCloseButton("select");
 
 	
-	s->addGroup(_("QUICK ACCESS"));
+	if (quickAccessMenu)
+	{
+    		s->addGroup(_("QUICK ACCESS"));
 
 	        if (AudioManager::getInstance()->isSongPlaying())
 		{
@@ -4110,7 +4112,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			                              if (!Utils::FileSystem::exists(favoriteDir))
 			                                  Utils::FileSystem::createDirectory(favoriteDir);
 			
-    						      std::string favoritesFile = favoriteDir + "/favorites.txt";
+			                              std::string favoritesFile = favoriteDir + "favorites.txt";
 			                              std::string fileContent = Utils::FileSystem::readAllText(favoritesFile);
 							  
 			                              if (fileContent.find(currentSongPath) != std::string::npos)
@@ -4142,6 +4144,8 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			                      },
 			                      "iconFavorite");
 
+		            std::string favoriteDir = Paths::getUserFavoriteMusicPath();
+			    std::string favoritesFile = favoriteDir + "favorites.txt";
 			    bool isFavoriteMusicAvailable = Utils::FileSystem::exists(favoritesFile) &&
                          				     !Utils::FileSystem::readAllText(favoritesFile).empty();
 		
@@ -4165,7 +4169,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		            }
 		        }
 		    }
-
 
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
