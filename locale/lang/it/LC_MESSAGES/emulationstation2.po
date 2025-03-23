@@ -1063,12 +1063,6 @@ msgstr "AUTO"
 msgid "dmd matrix size"
 msgstr "dimensioni matrice dmd"
 
-msgid "MATRIX"
-msgstr "MATRICE"
-
-msgid "rgb dmd order"
-msgstr "ordine rgb dmd"
-
 msgid "BRIGHTNESS"
 msgstr "LUMINOSITÀ"
 
@@ -2220,6 +2214,15 @@ msgstr "INIZIA LA PARTITA"
 msgid "HOST A NETPLAY GAME"
 msgstr "OSPITA UNA PARTITA NETPLAY"
 
+msgid "PUBLICLY ANNOUNCE GAME"
+msgstr "ANNUNCIA PUBBLICAMENTE LA PARTITA"
+
+msgid "PLAYER PASSWORD"
+msgstr "PASSWORD GIOCATORE"
+
+msgid "VIEWER PASSWORD"
+msgstr "PASSWORD SPETTATORE"
+
 msgid "FIND SIMILAR GAMES..."
 msgstr "CERCA GIOCHI SIMILI..."
 
@@ -2586,9 +2589,6 @@ msgstr "COLLEGATI SU NETPLAY"
 
 msgid "Select a game lobby to join"
 msgstr "Seleziona una stanza di gioco a cui unirti"
-
-msgid "Select a game lobby to create or join"
-msgstr "Scegli una lobby gioco da creare o entrare"
 
 msgid "FAILED"
 msgstr "FALLITO"
@@ -3633,7 +3633,6 @@ msgstr ""
 
 #~ msgid "rgb dmd order"
 #~ msgstr "ordine rgb dmd"
-
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr "Resetta i valori dei metadata GameTime, PlayCount e LastPlayed"
