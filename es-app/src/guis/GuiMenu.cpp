@@ -4112,7 +4112,9 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 			                              if (!Utils::FileSystem::exists(favoriteDir))
 			                                  Utils::FileSystem::createDirectory(favoriteDir);
 			
-			                              std::string favoritesFile = Paths::getFavoritesMusicFilePath();
+			                              std::string favoriteDir = Paths::getUserFavoriteMusicPath();
+    						      std::string favoritesFile = favoriteDir + "/favorites.txt";
+							  
 			                              std::string fileContent = Utils::FileSystem::readAllText(favoritesFile);
 							  
 			                              if (fileContent.find(currentSongPath) != std::string::npos)
@@ -4146,6 +4148,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 
 		            std::string favoriteDir = Paths::getUserFavoriteMusicPath();
 			    std::string favoritesFile = favoriteDir + "favorites.txt";
+				
 			    bool isFavoriteMusicAvailable = Utils::FileSystem::exists(favoritesFile) &&
                          				     !Utils::FileSystem::readAllText(favoritesFile).empty();
 		
