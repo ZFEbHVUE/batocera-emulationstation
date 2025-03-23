@@ -1065,12 +1065,6 @@ msgstr "АВТО"
 msgid "dmd matrix size"
 msgstr "dmd размер матрицы"
 
-msgid "MATRIX"
-msgstr "МАТРИЦА"
-
-msgid "rgb dmd order"
-msgstr "порядок rgb dmd"
-
 msgid "BRIGHTNESS"
 msgstr "ЯРКОСТЬ"
 
@@ -1925,7 +1919,7 @@ msgid "SHOW FOLDERS FIRST"
 msgstr "ПОКАЗЫВАТЬ ПАПКИ ПЕРВЫМИ"
 
 msgid "IGNORE LEADING ARTICLES WHEN SORTING"
-msgstr "ИГНОРИРОВАТЬ АРТИКЛЬ ПРИ СОРТИРОВКИ"
+msgstr "ИГНОРИРОВАТЬ АРТИКЛЬ ПРИ СОРТИРОВКЕ"
 
 msgid "Ignore 'The' and 'A' if at the start."
 msgstr "Игнорует 'The' и 'A', если они находятся в начале."
@@ -2048,10 +2042,10 @@ msgid "VIEW USER MANUAL"
 msgstr "РУКОВОДСТВО ПОЛЬЗОВАТЕЛЯ"
 
 msgid "DISABLE PLANE MODE"
-msgstr "ОТКЛЮЧИТЬ РЕЖИМ ПЛОСКОСТИ"
+msgstr "ОТКЛЮЧИТЬ АВИАРЕЖИМ"
 
 msgid "ENABLE PLANE MODE"
-msgstr "ВКЛЮЧИТЬ РЕЖИМ ПЛОСКОСТИ"
+msgstr "ВКЛЮЧИТЬ АВИАРЕЖИМ"
 
 msgid "RESTART SYSTEM"
 msgstr "ПЕРЕЗАГРУЗИТЬ СИСТЕМУ"
@@ -2217,6 +2211,15 @@ msgstr "НАЧАТЬ ИГРУ"
 
 msgid "HOST A NETPLAY GAME"
 msgstr "ХОСТ NETPLAY ИГРЫ"
+
+msgid "PUBLICLY ANNOUNCE GAME"
+msgstr "ПУБЛИЧНО АНОНСИРУЕМАЯ ИГРА"
+
+msgid "PLAYER PASSWORD"
+msgstr "ПАРОЛЬ ИГРОКА"
+
+msgid "VIEWER PASSWORD"
+msgstr "ПАРОЛЬ ЗРИТЕЛЯ"
 
 msgid "FIND SIMILAR GAMES..."
 msgstr "НАЙТИ ПОХОЖИЕ ИГРЫ..."
@@ -2585,9 +2588,6 @@ msgstr "ПОДКЛЮЧИТЬСЯ К NETPLAY"
 msgid "Select a game lobby to join"
 msgstr "Выберите лобби для присоединения"
 
-msgid "Select a game lobby to create or join"
-msgstr "Выберите игровое лобби, чтобы создать или присоединиться к нему"
-
 msgid "FAILED"
 msgstr "НЕ УДАЛОСЬ"
 
@@ -2690,6 +2690,12 @@ msgstr "ПОКАЗАТЬ УРОВЕНЬ ЗАРЯДА КОНТРОЛЛЕРА"
 
 msgid "DRAW GUN CROSSHAIR"
 msgstr "ОТОБРАЖАТЬ ПЕРЕКРЕСТИЕ ПИСТОЛЕТА"
+
+msgid "BEHAVIOR"
+msgstr ""
+
+msgid "RESTRICT HOTKEYS TO EXIT"
+msgstr ""
 
 msgid "default"
 msgstr "по умолчанию"
@@ -3153,6 +3159,9 @@ msgstr "ЯДРО ОТСУТСТВУЕТ"
 
 msgid "UKNOWN ERROR"
 msgstr "НЕИЗВЕСТНАЯ ОШИБКА"
+
+msgid "Interlaced"
+msgstr ""
 
 msgid "all games"
 msgstr "все игры"
@@ -3630,7 +3639,6 @@ msgstr ""
 
 #~ msgid "rgb dmd order"
 #~ msgstr "порядок rgb dmd"
-
 
 #~ msgid "Reset values of GameTime, PlayCount and LastPlayed metadatas."
 #~ msgstr ""
