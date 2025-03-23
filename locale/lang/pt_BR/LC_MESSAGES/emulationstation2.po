@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "SCANNING BLUETOOTH"
@@ -1070,12 +1070,6 @@ msgstr "AUTOMÁTICO"
 msgid "dmd matrix size"
 msgstr "tamanho da matriz dmd"
 
-msgid "MATRIX"
-msgstr "MATRIZ"
-
-msgid "rgb dmd order"
-msgstr "ordem dmd rgb"
-
 msgid "BRIGHTNESS"
 msgstr "BRILHO"
 
@@ -1710,7 +1704,8 @@ msgid "REWIND"
 msgstr "REBOBINAR"
 
 msgid "Store past states to rewind to in realtime, if the core supports it."
-msgstr "Armazena estados passados para rebobinar em tempo real, se o núcleo suportar."
+msgstr ""
+"Armazena estados passados para rebobinar em tempo real, se o núcleo suportar."
 
 msgid "INTEGER SCALING (PIXEL PERFECT)"
 msgstr "ESCALA INTEIRA (PIXEL PERFEITO)"
@@ -2235,6 +2230,15 @@ msgstr "INICIAR JOGO"
 msgid "HOST A NETPLAY GAME"
 msgstr "ORGANIZAR JOGO EM REDE"
 
+msgid "PUBLICLY ANNOUNCE GAME"
+msgstr "ANUNCIAR PUBLICAMENTE O JOGO"
+
+msgid "PLAYER PASSWORD"
+msgstr "SENHA DO JOGADOR"
+
+msgid "VIEWER PASSWORD"
+msgstr "SENHA DE ESPECTADOR"
+
 msgid "FIND SIMILAR GAMES..."
 msgstr "JOGOS SEMELHANTES..."
 
@@ -2603,9 +2607,6 @@ msgstr "CONECTE-SE AOS JOGOS EM REDE"
 msgid "Select a game lobby to join"
 msgstr "Seleciona uma sala de jogo para juntar-se"
 
-msgid "Select a game lobby to create or join"
-msgstr "Selecione uma sala de jogo para criar ou entrar"
-
 msgid "FAILED"
 msgstr "FALHOU"
 
@@ -2621,14 +2622,11 @@ msgstr "MESMA ROM"
 msgid "UNAVAILABLE CORE"
 msgstr "NÚCLEO INDISPONÍVEL"
 
-msgid "PLAY ONLINE AS HOST"
-msgstr "JOGAR ONLINE COMO HOST"
+msgid "LAN GAMES"
+msgstr "JOGOS EM LAN"
 
-msgid "PLAY OFFLINE"
-msgstr "JOGAR OFFLINE"
-
-msgid "JOIN EXISTING GAME"
-msgstr "ENTRAR NUM JOGO EXISTENTE"
+msgid "ONLINE GAMES"
+msgstr "JOGOS ONLINE"
 
 msgid "AVAILABLE GAMES"
 msgstr "JOGOS DISPONÍVEIS"
@@ -2713,6 +2711,12 @@ msgstr "EXIBIR NÍVEL DA BATERIA DO CONTROLE"
 
 msgid "DRAW GUN CROSSHAIR"
 msgstr "DESENHAR A MIRA DA ARMA"
+
+msgid "BEHAVIOR"
+msgstr "COMPORTAMENTO"
+
+msgid "RESTRICT HOTKEYS TO EXIT"
+msgstr "RESTRINGIR ATALHOS PARA SAIR"
 
 msgid "default"
 msgstr "padrão"
@@ -2890,6 +2894,15 @@ msgstr "USAR O LEITOR OMX PARA A PROTEÇÃO DE TELA"
 
 msgid "SHOW GAME INFO"
 msgstr "EXIBIR INFORMAÇÃO DO JOGO"
+
+msgid "SHOW DATE TIME"
+msgstr "MOSTRAR RELÓGIO"
+
+msgid "DATE FORMAT"
+msgstr "FORMATO DE DATA"
+
+msgid "TIME FORMAT"
+msgstr "FORMATO DE TEMPO"
 
 msgid "USE MARQUEE AS GAME INFO"
 msgstr "USAR LETREIRO COMO INFORMAÇÃO DO JOGO"
@@ -3165,6 +3178,9 @@ msgstr "ESTÁ FALTANDO NÚCLEO"
 
 msgid "UKNOWN ERROR"
 msgstr "ERRO DESCONHECIDO"
+
+msgid "Interlaced"
+msgstr "Interlaced"
 
 msgid "all games"
 msgstr "todos os jogos"
