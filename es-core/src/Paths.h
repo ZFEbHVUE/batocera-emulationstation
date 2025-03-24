@@ -1,4 +1,4 @@
-// Paths.h
+/ Paths.h
 #pragma once
 
 #include <string>
@@ -47,7 +47,7 @@ public:
 	static std::string& getVideoFilters() { return getInstance()->mVideoFiltersPath; }
 	static std::string& getUserVideoFilters() { return getInstance()->mUserVideoFiltersPath; }
 
-	// Retroachivement sounds
+	// Retroachievement sounds
 	static std::string& getRetroachivementSounds() { return getInstance()->mRetroachivementSounds; }
 	static std::string& getUserRetroachivementSounds() { return getInstance()->mUserRetroachivementSounds; }
 
@@ -67,7 +67,6 @@ public:
 	static void setExePath(const std::string& _path);
 
 	static std::string findEmulationStationFile(const std::string& fileName);
-	static std::string getUserDataPath();
 
 private:
 	static Paths* getInstance()
