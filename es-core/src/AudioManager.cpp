@@ -265,6 +265,35 @@ void AudioManager::playRandomMusic(bool useFavorites)
 	mPlayingSystemThemeSong = "";
 }
 
+void AudioManager::playMusic(std::string path)
+{
+	if (!mInitialized)
+		return;
+
+	// free the previous music
+	stopMusic(false);
+
+	if (!Settings::BackgroundMusic())
+		return;
+
+	// load a new music
+	mCurrentMusic = Mix_LoadMUS(path.c_str());
+	if (mCurrentMusic == NULL)
+	{
+		LOG(LogError) << Mix_GetError() << " for " << path;
+		return;
+	}
+
+	if (Mix_FadeInMusic(mCurrentMusic, 1, 1000) == -1)
+	{
+		stopMusic();
+		return;
+	}
+
+	mCurrentMusicPath = path;
+	Mix_HookMusicFinished(AudioManager::musicEnd_callback);
+}
+
 void AudioManager::musicEnd_callback()
 {
 	if (!AudioManager::getInstance()->mPlayingSystemThemeSong.empty())
