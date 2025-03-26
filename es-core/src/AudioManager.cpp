@@ -212,37 +212,37 @@ bool AudioManager::songWasPlayedRecently(const std::string& song)
 
 void AudioManager::playRandomMusic(bool useFavorites)
 {
-    stopMusic(true);
-    std::string musicPath = Paths::getUserMusicPath();
-
     std::vector<std::string> musicFiles;
 
-    if (useFavorites)
-    {
-        std::string favoritesFile = musicPath + "/favorites.m3u";
+    std::string musicPath = Paths::getUserMusicPath();
+    std::string favoritesFile = musicPath + "/favorites.m3u";
 
-        if (Utils::FileSystem::exists(favoritesFile))
+    if (useFavorites && Utils::FileSystem::exists(favoritesFile))
+    {
+        auto lines = Utils::FileSystem::readAllLines(favoritesFile);
+        musicFiles.assign(lines.begin(), lines.end());
+    }
+    else
+    {
+        auto extensions = { ".mp3", ".ogg", ".wav" };
+        for (auto& ext : extensions)
         {
-            musicFiles = Utils::FileSystem::readAllLines(favoritesFile);
+            auto files = Utils::FileSystem::getDirContent(musicPath, false, false);
+            for (auto& file : files)
+            {
+                if (Utils::String::endsWith(file, ext))
+                    musicFiles.push_back(file);
+            }
         }
     }
 
-    // Si pas de favoris ou que le fichier est vide, charger toutes les musiques
-    if (!useFavorites || musicFiles.empty())
-    {
-        musicFiles.clear();
-        for (const std::string& extension : {".mp3", ".ogg", ".wav"})
-        {
-            auto files = Utils::FileSystem::getDirContent(musicPath, extension, false);
-            musicFiles.insert(musicFiles.end(), files.begin(), files.end());
-        }
-    }
+    if (musicFiles.empty())
+        return;
 
-    if (!musicFiles.empty())
-    {
-        int randomIndex = std::rand() % musicFiles.size();
-        playMusic(musicFiles[randomIndex]);
-    }
+    int randomIndex = Utils::Random::get(0, musicFiles.size() - 1);
+    std::string selectedSong = musicFiles[randomIndex];
+
+    playMusic(selectedSong, 0.3f);
 }
 
 void AudioManager::playMusic(std::string path)
