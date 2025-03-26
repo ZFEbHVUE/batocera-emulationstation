@@ -30,29 +30,6 @@
 AudioManager* AudioManager::sInstance = NULL;
 std::vector<std::shared_ptr<Sound>> AudioManager::sSoundVector;
 
-namespace 
-{
-	   std::vector<std::pair<std::string, std::string>> loadFavoriteSongs(const std::string &favoritesFile)
-	   {
-		    std::vector<std::pair<std::string, std::string>> favorites;
-		    std::list<std::string> lines = Utils::FileSystem::readAllLines(favoritesFile);
-		    for (const auto &line : lines)
-		    {
-			if (line.empty())
-			    continue;
-			size_t pos = line.find(';');
-			if (pos != std::string::npos)
-			{
-			    std::string path = line.substr(0, pos);
-			    std::string name = line.substr(pos + 1);
-			    favorites.push_back(std::make_pair(path, name));
-			}
-	    }
-	    return favorites;
-	}
-} 
-
-
 AudioManager::AudioManager() : mInitialized(false), mCurrentMusic(nullptr), mMusicVolume(MIX_MAX_VOLUME), mVideoPlaying(false)
 {
 	init();
@@ -233,51 +210,40 @@ bool AudioManager::songWasPlayedRecently(const std::string& song)
 	return false;
 }
 
-
 void AudioManager::playRandomMusic(bool useFavorites)
 {
+    stopMusic(true);
     std::string musicPath = Paths::getUserMusicPath();
+
     std::vector<std::string> musicFiles;
 
     if (useFavorites)
     {
-        std::string favFile = musicPath + "/favorites.m3u";
-        if (Utils::FileSystem::exists(favFile))
+        std::string favoritesFile = musicPath + "/favorites.m3u";
+
+        if (Utils::FileSystem::exists(favoritesFile))
         {
-            std::ifstream file(favFile);
-            std::string line;
-            while (std::getline(file, line))
-            {
-                if (!line.empty())
-                    musicFiles.push_back(line);
-            }
+            musicFiles = Utils::FileSystem::readAllLines(favoritesFile);
         }
     }
-    else
+
+    // Si pas de favoris ou que le fichier est vide, charger toutes les musiques
+    if (!useFavorites || musicFiles.empty())
     {
-        musicFiles = Utils::FileSystem::getDirContent(musicPath, false, false);
-	Utils::FileSystem::stringList filteredFiles;
-	for (auto& file : musicFiles)
-	{
-	    std::string ext = Utils::FileSystem::getExtension(file);
-	    if (ext == ".mp3" || ext == ".ogg" || ext == ".wav")
-	        filteredFiles.push_back(file);
-	}
-	musicFiles = filteredFiles;
+        musicFiles.clear();
+        for (const std::string& extension : {".mp3", ".ogg", ".wav"})
+        {
+            auto files = Utils::FileSystem::getDirContent(musicPath, extension, false);
+            musicFiles.insert(musicFiles.end(), files.begin(), files.end());
+        }
     }
 
     if (!musicFiles.empty())
     {
-        int randomIndex = rand() % musicFiles.size();
-        playSong(musicFiles[randomIndex]);
-    }
-    else
-    {
-        LOG(LogWarning) << "No music found in the selected directory!";
-        stopMusic();
+        int randomIndex = std::rand() % musicFiles.size();
+        playMusic(musicFiles[randomIndex]);
     }
 }
-
 
 void AudioManager::playMusic(std::string path)
 {
