@@ -67,6 +67,8 @@ public:
 
 	static std::string findEmulationStationFile(const std::string& fileName);
 
+	static std::string getUserDataPath();
+
 private:
 	static Paths* getInstance()
 	{
