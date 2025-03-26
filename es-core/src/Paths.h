@@ -1,4 +1,3 @@
-/ Paths.h
 #pragma once
 
 #include <string>
