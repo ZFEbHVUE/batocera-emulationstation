@@ -210,68 +210,59 @@ bool AudioManager::songWasPlayedRecently(const std::string& song)
 	return false;
 }
 
-void AudioManager::playRandomMusic(bool useFavorites)
+void AudioManager::playRandomMusic(bool useFavorites) 
 {
-    std::vector<std::string> musicFiles;
-
-    std::string musicPath = Paths::getUserMusicPath();
-    std::string favoritesFile = musicPath + "/favorites.m3u";
-
-    if (useFavorites && Utils::FileSystem::exists(favoritesFile))
-    {
-        auto lines = Utils::FileSystem::readAllLines(favoritesFile);
-        musicFiles.assign(lines.begin(), lines.end());
-    }
-    else
-    {
-        auto extensions = { ".mp3", ".ogg", ".wav" };
-        for (auto& ext : extensions)
-        {
-            auto files = Utils::FileSystem::getDirContent(musicPath, false, false);
-            for (auto& file : files)
-            {
-                if (Utils::String::endsWith(file, ext))
-                    musicFiles.push_back(file);
-            }
-        }
-    }
-
-    if (musicFiles.empty())
-        return;
-
-    int randomIndex = Utils::Random::get(0, musicFiles.size() - 1);
-    std::string selectedSong = musicFiles[randomIndex];
-
-    playMusic(selectedSong, 0.3f);
-}
-
-void AudioManager::playMusic(std::string path)
-{
-	if (!mInitialized)
-		return;
-
-	// free the previous music
-	stopMusic(false);
-
 	if (!Settings::BackgroundMusic())
 		return;
+		
+	std::vector<std::string> musics;
 
-	// load a new music
-	mCurrentMusic = Mix_LoadMUS(path.c_str());
-	if (mCurrentMusic == NULL)
+	// Utiliser les favoris si demandé
+	std::string musicPath = Paths::getUserMusicPath();
+	std::string favoritesFile = musicPath + "/favorites.m3u";
+
+	if (useFavorites && Utils::FileSystem::exists(favoritesFile))
 	{
-		LOG(LogError) << Mix_GetError() << " for " << path;
-		return;
+		auto lines = Utils::FileSystem::readAllLines(favoritesFile);
+		musics.assign(lines.begin(), lines.end());
+	}
+	else
+	{
+		// check in Theme music directory
+		if (!mCurrentThemeMusicDirectory.empty())
+			getMusicIn(mCurrentThemeMusicDirectory, musics);
+
+		// check in User music directory
+		if (musics.empty())
+			getMusicIn(Paths::getUserMusicPath(), musics);
+
+		// check in system sound directory
+		if (musics.empty())
+			getMusicIn(Paths::getMusicPath(), musics);
+
+		// check in .emulationstation/music directory
+		if (musics.empty())
+			getMusicIn(Paths::getUserEmulationStationPath() + "/music", musics);
 	}
 
-	if (Mix_FadeInMusic(mCurrentMusic, 1, 1000) == -1)
-	{
-		stopMusic();
+	if (musics.empty())
 		return;
+
+	int randomIndex = Randomizer::random(musics.size());
+	while (songWasPlayedRecently(musics.at(randomIndex)))
+	{
+		LOG(LogDebug) << "Music \"" << musics.at(randomIndex) << "\" was played recently, trying again";
+		randomIndex = Randomizer::random(musics.size());
 	}
 
-	mCurrentMusicPath = path;
-	Mix_HookMusicFinished(AudioManager::musicEnd_callback);
+	// continue playing ?
+	if (mCurrentMusic != nullptr && useFavorites)
+		return;
+
+	playMusic(musics.at(randomIndex));
+	playSong(musics.at(randomIndex));
+	addLastPlayed(musics.at(randomIndex), musics.size());
+	mPlayingSystemThemeSong = "";
 }
 
 void AudioManager::musicEnd_callback()
