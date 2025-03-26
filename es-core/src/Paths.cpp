@@ -39,14 +39,11 @@ Paths::Paths()
 	mRootPath = "/userdata";
 	mEmulationStationPath = "/usr/share/emulationstation";
 	mUserEmulationStationPath = "/userdata/system/configs/emulationstation";
-
 	mLogPath = "/userdata/system/logs";
 	mScreenShotsPath = "/userdata/screenshots";
 	mSaveStatesPath = "/userdata/saves";
 	mMusicPath = "/usr/share/batocera/music";
 	mUserMusicPath = "/userdata/music";
-	mFavoriteMusicPath = "/usr/share/batocera/favorite_music";
-	mUserFavoriteMusicPath = "/userdata/favorite_music";
 	mThemesPath = "/usr/share/emulationstation/themes";
 	mUserThemesPath = "/userdata/themes";
 	mKeyboardMappingsPath = "/usr/share/evmapy";
@@ -58,14 +55,10 @@ Paths::Paths()
 	mTimeZonesPath = "/usr/share/zoneinfo/";
 	mRetroachivementSounds = "/usr/share/libretro/assets/sounds";
 	mUserRetroachivementSounds = "/userdata/sounds/retroachievements";
-	
 	mSystemConfFilePath = "/userdata/system/batocera.conf";
 	mUserManualPath = "/usr/share/batocera/doc/notice.pdf";
 	mVersionInfoPath = "/usr/share/batocera/batocera.version";
 	mKodiPath = "/usr/bin/kodi";
-	
-	mFavoritesPath = mUserFavoriteMusicPath + "/favorites.txt";
-	
 #endif
 
 /* EmuElec sample locations.
@@ -169,6 +162,9 @@ void Paths::loadCustomConfiguration(bool overridesOnly)
 		
 	std::string relativeTo = Utils::FileSystem::getParent(path);
 
+	  std::map<std::string, std::string> ret;
+
+	
 	if (!overridesOnly)
 	{
 		for (auto var : folders)
