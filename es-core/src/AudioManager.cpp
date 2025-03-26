@@ -255,7 +255,15 @@ void AudioManager::playRandomMusic(bool useFavorites)
     }
     else
     {
-        musicFiles = Utils::FileSystem::getDirContent(musicPath, {".mp3", ".ogg", ".wav"}, false);
+        musicFiles = Utils::FileSystem::getDirContent(musicPath, false, false);
+	Utils::FileSystem::stringList filteredFiles;
+	for (auto& file : musicFiles)
+	{
+	    std::string ext = Utils::FileSystem::getExtension(file);
+	    if (ext == ".mp3" || ext == ".ogg" || ext == ".wav")
+	        filteredFiles.push_back(file);
+	}
+	musicFiles = filteredFiles;
     }
 
     if (!musicFiles.empty())
