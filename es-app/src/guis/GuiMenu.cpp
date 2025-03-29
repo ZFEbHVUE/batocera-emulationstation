@@ -4090,14 +4090,14 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		        if (!songName.empty())
 		        {
 		            s->addWithDescription(_("SKIP TO THE NEXT SONG"),
-		                                  _("NOW PLAYING") + ": " + songName,
-		                                  {},
-		                                  [window]()
-		                                  {
-		                                      AudioManager::getInstance()->playRandomMusic(false);
-		                                      // Pas de message inutile ici
-		                                  },
-		                                  "iconSound");
+					      _("NOW PLAYING") + ": " + songName,
+					      {},
+					      [window]()
+					      {
+						  AudioManager::getInstance()->playRandomMusic(false);
+						  GuiMenu::openQuitMenu_static(window, true, false);
+					      },
+					      "iconSound");
 		
 		            s->addWithDescription(_("SAVE TO FAVORITES"),
 		                                  _("Save current song to favorites"),
@@ -4106,9 +4106,7 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                                  {
 		                                      if (!currentSongPath.empty())
 		                                      {
-		                                          std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";
-		
-		                                          // Vérifie que le fichier existe et si le chemin n'est pas déjà dedans
+		                                          std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";                                         
 		                                          std::list<std::string> lines = Utils::FileSystem::readAllLines(favoritesFile);
 		                                          bool alreadyExists = std::find(lines.begin(), lines.end(), currentSongPath) != lines.end();
 		
@@ -4139,7 +4137,6 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 		                                  },
 		                                  "iconFavorite");
 		
-		            // Affiche le switch seulement si le fichier favorites.m3u existe ET contient au moins une ligne
 		            if (Utils::FileSystem::exists(favoritesFile) &&
 		                !Utils::FileSystem::readAllText(favoritesFile).empty())
 		            {
