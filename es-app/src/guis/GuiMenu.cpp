@@ -4081,70 +4081,86 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
     		s->addGroup(_("QUICK ACCESS"));
 
 	        if (AudioManager::getInstance()->isSongPlaying())
-		{
-
-			std::string songName = AudioManager::getInstance()->getSongName();
-		    	std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
-		    	std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";
+		    {
+		        std::string songName = AudioManager::getInstance()->getSongName();
+		        std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 		
-		    	if (!songName.empty())
-			{
-			    s->addWithDescription(_("SKIP TO THE NEXT SONG"),
-			                          _("NOW PLAYING") + ": " + songName,
-			                          {},
-			                          [window]()
-			                          {
-			                              AudioManager::getInstance()->playRandomMusic(false);
-			                              window->pushGui(new GuiMsgBox(window, _("Skipped to next song."), _("OK")));
-			                          },
-			                          "iconSound");
-			
-			    s->addWithDescription(_("SAVE TO FAVORITES"),
-			                          _("Save current song to favorites"),
-			                          {},
-			                          [window, currentSongPath]()
-			                          {
-			                              if (!currentSongPath.empty())
-			                              {
-			                                  std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";
-			                                  std::ofstream ofs(favoritesFile, std::ios::app);
-			                                  if (ofs.is_open())
-			                                  {
-			                                      ofs << currentSongPath << "\n";
-			                                      ofs.close();
-			                                      window->pushGui(new GuiMsgBox(window, _("Song added to favorites!"), _("OK")));
-			                                  }
-			                                  else
-			                                  {
-			                                      window->pushGui(new GuiMsgBox(window, _("Could not open favorites file."), _("OK")));
-			                                  }
-			
-			                                  AudioManager::getInstance()->playRandomMusic(true);
-			                              }
-			                              else
-			                              {
-			                                  window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
-			                              }
-			                          },
-			                          "iconFavorite");
-			
-			    auto favoriteSwitch = std::make_shared<SwitchComponent>(window);
-			    favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
-			
-			    s->addWithLabel(_("USE FAVORITES PLAYLIST"), favoriteSwitch);
-			    s->addSaveFunc([window, favoriteSwitch]()
-			    {
-			        bool useFavorite = favoriteSwitch->getState();
-			        Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
-			        Settings::getInstance()->saveFile();
-			
-			        std::string msg = useFavorite ? _("Favorites playlist activated!") : _("Default music folder activated!");
-			        window->pushGui(new GuiMsgBox(window, msg, _("OK")));
-			
-			        AudioManager::getInstance()->playRandomMusic(useFavorite);
-			    });
-			}
-    		}
+		        std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";
+		
+		        if (!songName.empty())
+		        {
+		            s->addWithDescription(_("SKIP TO THE NEXT SONG"),
+		                                  _("NOW PLAYING") + ": " + songName,
+		                                  {},
+		                                  [window]()
+		                                  {
+		                                      AudioManager::getInstance()->playRandomMusic(false);
+		                                      // Pas de message inutile ici
+		                                  },
+		                                  "iconSound");
+		
+		            s->addWithDescription(_("SAVE TO FAVORITES"),
+		                                  _("Save current song to favorites"),
+		                                  {},
+		                                  [window, currentSongPath]()
+		                                  {
+		                                      if (!currentSongPath.empty())
+		                                      {
+		                                          std::string favoritesFile = Paths::getUserMusicPath() + "/favorites.m3u";
+		
+		                                          // Vérifie que le fichier existe et si le chemin n'est pas déjà dedans
+		                                          std::list<std::string> lines = Utils::FileSystem::readAllLines(favoritesFile);
+		                                          bool alreadyExists = std::find(lines.begin(), lines.end(), currentSongPath) != lines.end();
+		
+		                                          if (alreadyExists)
+		                                          {
+		                                              window->pushGui(new GuiMsgBox(window, _("This song is already in Favorites."), _("OK")));
+		                                              return;
+		                                          }
+		
+		                                          std::ofstream ofs(favoritesFile, std::ios::app);
+		                                          if (ofs.is_open())
+		                                          {
+		                                              ofs << currentSongPath << "\n";
+		                                              ofs.close();
+		                                              window->pushGui(new GuiMsgBox(window, _("Song added to favorites!"), _("OK")));
+		                                          }
+		                                          else
+		                                          {
+		                                              window->pushGui(new GuiMsgBox(window, _("Could not open favorites file."), _("OK")));
+		                                          }
+		
+		                                          AudioManager::getInstance()->playRandomMusic(true);
+		                                      }
+		                                      else
+		                                      {
+		                                          window->pushGui(new GuiMsgBox(window, _("No song is currently playing."), _("OK")));
+		                                      }
+		                                  },
+		                                  "iconFavorite");
+		
+		            // Affiche le switch seulement si le fichier favorites.m3u existe ET contient au moins une ligne
+		            if (Utils::FileSystem::exists(favoritesFile) &&
+		                !Utils::FileSystem::readAllText(favoritesFile).empty())
+		            {
+		                auto favoriteSwitch = std::make_shared<SwitchComponent>(window);
+		                favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
+		
+		                s->addWithLabel(_("USE FAVORITES PLAYLIST"), favoriteSwitch);
+		                s->addSaveFunc([window, favoriteSwitch]()
+		                {
+		                    bool useFavorite = favoriteSwitch->getState();
+		                    Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
+		                    Settings::getInstance()->saveFile();
+		
+		                    std::string msg = useFavorite ? _("Favorites playlist activated!") : _("Default music folder activated!");
+		                    window->pushGui(new GuiMsgBox(window, msg, _("OK")));
+		
+		                    AudioManager::getInstance()->playRandomMusic(useFavorite);
+		                });
+		            }
+		        }
+		    }
 	
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
