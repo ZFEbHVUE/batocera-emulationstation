@@ -224,22 +224,26 @@ void AudioManager::playRandomMusic(bool continueIfPlaying)
         if (favorites.empty())
         {
             LOG(LogInfo) << "No favorite music found in " << favoritesFile;
+            Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
+            Settings::getInstance()->saveFile();
+        }
+        else
+        {
+            // Normal favorite playback logic
+            int randomIndex = Randomizer::random(favorites.size());
+            std::string chosenSongPath = favorites[randomIndex].first;
+
+            if (mCurrentMusic != nullptr && continueIfPlaying)
+                return;
+
+            LOG(LogInfo) << "Playing favorite music: " << favorites[randomIndex].second
+                        << " (" << chosenSongPath << ")";
+            playMusic(chosenSongPath);
+            playSong(chosenSongPath);
+            addLastPlayed(chosenSongPath, favorites.size());
+            mPlayingSystemThemeSong = "";
             return;
         }
-
-        int randomIndex = Randomizer::random(favorites.size());
-        std::string chosenSongPath = favorites[randomIndex].first;
-
-        if (mCurrentMusic != nullptr && continueIfPlaying)
-            return;
-
-        LOG(LogInfo) << "Playing favorite music: " << favorites[randomIndex].second
-                     << " (" << chosenSongPath << ")";
-        playMusic(chosenSongPath);
-        playSong(chosenSongPath);
-        addLastPlayed(chosenSongPath, favorites.size());
-        mPlayingSystemThemeSong = "";
-        return;
     }
 
     std::vector<std::string> musics;

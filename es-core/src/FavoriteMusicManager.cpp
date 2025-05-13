@@ -6,7 +6,6 @@
 #include "Window.h"
 #include "guis/GuiMsgBox.h"
 
-
 #include <fstream>
 
 FavoriteMusicManager& FavoriteMusicManager::getInstance()
@@ -105,9 +104,12 @@ bool FavoriteMusicManager::removeSongFromFavorites(const std::string& path, cons
     if (lines.empty())
     {
         Utils::FileSystem::removeFile(favoritesFile);
-        Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
-        Settings::getInstance()->saveFile();
+        if (Settings::getInstance()->getBool("audio.useFavoriteMusic"))
+        {
+            Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
+            Settings::getInstance()->saveFile();
         }
+    }
     else
     {
         std::ofstream ofs(favoritesFile, std::ios::trunc);
@@ -119,8 +121,7 @@ bool FavoriteMusicManager::removeSongFromFavorites(const std::string& path, cons
         for (auto& l : lines)
             ofs << l << "\n";
         ofs.close();
-
-        }
+    }
 
     return true;
 }

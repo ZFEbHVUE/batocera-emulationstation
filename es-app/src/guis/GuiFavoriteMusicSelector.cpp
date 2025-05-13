@@ -1,0 +1,192 @@
+#include "guis/GuiFavoriteMusicSelector.h"
+#include "guis/GuiSettings.h"
+#include "guis/GuiMsgBox.h"
+#include "components/SwitchComponent.h"
+#include "components/TextComponent.h"
+#include "components/ButtonComponent.h"
+#include "FavoriteMusicManager.h"
+#include "Settings.h"
+#include "AudioManager.h"
+#include "Paths.h"
+#include "utils/FileSystemUtil.h"
+#include "utils/StringUtil.h"
+#include "views/ViewController.h"
+#include "LocaleES.h"
+#include "renderers/Renderer.h"
+#include <fstream>
+#include <set>
+#include <algorithm>
+
+void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool browseMusicMode, bool animate, 
+                                                    const std::string& customPath)
+{
+    auto s = new GuiSettings(window, (browseMusicMode ? _("SELECTION FAVORITE SONG") : _("FAVORITES LIST")).c_str());
+    s->setCloseButton("select");
+
+    std::vector<std::pair<std::string, std::string>> favorites;
+    std::set<std::string> favoriteSet;
+    std::vector<std::pair<std::string, std::string>> directoryFiles;
+    std::vector<std::shared_ptr<SwitchComponent>> directorySwitches;
+    std::vector<std::shared_ptr<SwitchComponent>> favoritesSwitches;
+
+    if (Utils::FileSystem::exists(FavoriteMusicManager::getFavoriteMusicFilePath()))
+    {
+        favorites = FavoriteMusicManager::loadFavoriteSongs(
+            FavoriteMusicManager::getFavoriteMusicFilePath());
+
+        for (auto& fav : favorites)
+        {
+            favoriteSet.insert(fav.first);
+        }
+    }
+
+    std::string userMusicPath = Paths::getUserMusicPath();
+    std::string systemMusicPath = Paths::getMusicPath();
+
+    bool isInUserDir = false;
+    bool isInSystemDir = false;
+    bool isInRootDir = true;
+
+    if (!customPath.empty()) {
+        isInRootDir = false;
+
+        if (customPath == userMusicPath) {
+            isInUserDir = true;
+        } else if (customPath == systemMusicPath) {
+            isInSystemDir = true;
+        } else if (customPath.find(userMusicPath) == 0) {
+            isInUserDir = true;
+        } else if (customPath.find(systemMusicPath) == 0) {
+            isInSystemDir = true;
+        }
+    }
+
+    s->addGroup(_("SELECTION FAVORITE SONG"));
+ 
+    if (isInRootDir) {
+        s->addEntry(_("USER DIRECTORY") + " (" + userMusicPath + ")", true, [window, animate, userMusicPath]() {
+            GuiFavoriteMusicSelector::openSelectFavoriteSongs(window, true, animate, userMusicPath);
+        }, "iconFolder");
+
+        s->addEntry(_("DEFAULT DIRECTORY") + " (" + systemMusicPath + ")", true, [window, animate, systemMusicPath]() {
+            GuiFavoriteMusicSelector::openSelectFavoriteSongs(window, true, animate, systemMusicPath);
+        }, "iconFolder");
+    }
+    else {
+        std::string currentPath = customPath;
+
+        if (Utils::FileSystem::exists(currentPath)) {
+            auto dirContent = Utils::FileSystem::getDirContent(currentPath, false);
+            std::vector<std::string> directories;
+            std::vector<std::string> audioFiles;
+
+            for (auto& entry : dirContent) {
+                if (Utils::FileSystem::isDirectory(entry)) {
+                    directories.push_back(entry);
+                } else if (Utils::FileSystem::isAudio(entry)) {
+                    audioFiles.push_back(entry);
+                }
+            }
+
+            std::sort(directories.begin(), directories.end(), [](const std::string& a, const std::string& b) {
+                return Utils::String::toUpper(Utils::FileSystem::getFileName(a)) < 
+                       Utils::String::toUpper(Utils::FileSystem::getFileName(b));
+            });
+
+            for (auto& dir : directories) {
+                std::string name = Utils::FileSystem::getFileName(dir);
+                s->addEntry(name, false, [window, animate, dir]() {
+                    GuiFavoriteMusicSelector::openSelectFavoriteSongs(window, true, animate, dir);
+                }, "iconFolder");
+            }
+
+            std::sort(audioFiles.begin(), audioFiles.end(), [](const std::string& a, const std::string& b) {
+                return Utils::String::toUpper(Utils::FileSystem::getFileName(a)) < 
+                       Utils::String::toUpper(Utils::FileSystem::getFileName(b));
+            });
+
+            for (auto& file : audioFiles) {
+                std::string fullName = Utils::FileSystem::getFileName(file);
+                std::string nameWithoutExt = fullName;
+                size_t lastDot = fullName.find_last_of('.');
+                if (lastDot != std::string::npos) {
+                    nameWithoutExt = fullName.substr(0, lastDot);
+                }
+
+                bool isInFavorites = favoriteSet.find(file) != favoriteSet.end();
+
+                auto sw = std::make_shared<SwitchComponent>(window);
+                sw->setState(isInFavorites);
+
+                s->addWithDescription(fullName, "", sw, nullptr, "iconSound");
+
+                directoryFiles.emplace_back(file, nameWithoutExt);
+                directorySwitches.push_back(sw);
+            }
+        }
+    }
+
+    s->addGroup(_("FAVORITE FILE"));
+
+    if (!favorites.empty())
+    {
+        for (auto& fav : favorites)
+        {
+            std::string name = fav.second;
+            std::string path = fav.first;
+
+            auto sw = std::make_shared<SwitchComponent>(window);
+            sw->setState(true);  
+
+            s->addWithDescription(name, path, sw, nullptr, "iconSound");
+
+            favoritesSwitches.push_back(sw);
+        }
+    }
+    else
+    {
+        s->addEntry(_("NO FAVORITES FOUND"), false, nullptr, "iconInfo");
+    }
+
+    s->addSaveFunc([window, favorites, favoritesSwitches, directoryFiles, directorySwitches]() {
+        auto favoritePath = FavoriteMusicManager::getFavoriteMusicPath();
+        if (!Utils::FileSystem::exists(favoritePath))
+            Utils::FileSystem::createDirectory(favoritePath);
+
+        for (size_t i = 0; i < favorites.size(); ++i) {
+            if (!favoritesSwitches[i]->getState()) {
+                FavoriteMusicManager::getInstance().removeSongFromFavorites(
+                    favorites[i].first, favorites[i].second, window);
+            }
+        }
+
+        for (size_t i = 0; i < directoryFiles.size(); ++i) {
+            if (directorySwitches[i]->getState()) {
+                std::string filePath = directoryFiles[i].first;
+                std::string fileName = directoryFiles[i].second; 
+
+                bool found = false;
+                for (auto& fav : favorites) {
+                    if (fav.first == filePath) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    FavoriteMusicManager::getInstance().saveSongToFavorites(filePath, fileName, window);
+                }
+            }
+        }
+    });
+
+    if (animate)
+        s->getMenu().animateTo(Vector2f((Renderer::getScreenWidth() - s->getMenu().getSize().x()) / 2, 
+                                       (Renderer::getScreenHeight() - s->getMenu().getSize().y()) / 2));
+    else
+        s->getMenu().setPosition((Renderer::getScreenWidth() - s->getMenu().getSize().x()) / 2, 
+                                (Renderer::getScreenHeight() - s->getMenu().getSize().y()) / 2);
+
+    window->pushGui(s);
+}
+
