@@ -38,6 +38,8 @@
 #include "InputManager.h"
 #include "AudioManager.h"
 #include "FavoriteMusicManager.h"
+#include "guis/GuiFavoriteMusicSelector.h"
+
 #include <LibretroRatio.h>
 #include "guis/GuiUpdate.h"
 #include "guis/GuiInstallStart.h"
@@ -3948,23 +3950,7 @@ void GuiMenu::openSoundSettings()
 	});
 	
 	s->addSwitch(_("DISPLAY SONG TITLES"), "audio.display_titles", true);
-
-
-    if (Utils::FileSystem::exists(FavoriteMusicManager::getFavoriteMusicFilePath()))
-	    {
-		    auto favoriteSwitch = std::make_shared<SwitchComponent>(mWindow);
-		    favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
-
-		    s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"), "", favoriteSwitch, nullptr);
-
-		    s->addSaveFunc([favoriteSwitch]() {
-			    bool useFavorite = favoriteSwitch->getState();
-			    Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
-			    Settings::getInstance()->saveFile();
-			    AudioManager::getInstance()->playRandomMusic(useFavorite);
-		    });
-	    }
-   
+ 
 	// how long to display the song titles?
 	auto titles_time = std::make_shared<SliderComponent>(mWindow, 2.f, 120.f, 2.f, "s");
 	titles_time->setValue(Settings::getInstance()->getInt("audio.display_titles_time"));
@@ -3976,6 +3962,24 @@ void GuiMenu::openSoundSettings()
 	s->addSwitch(_("ONLY PLAY SYSTEM-SPECIFIC MUSIC FOLDER"), "audio.persystem", true, [] { AudioManager::getInstance()->changePlaylist(ViewController::get()->getState().getSystem()->getTheme(), true); } );
 	s->addSwitch(_("PLAY SYSTEM-SPECIFIC MUSIC"), "audio.thememusics", true, [] { AudioManager::getInstance()->changePlaylist(ViewController::get()->getState().getSystem()->getTheme(), true); });	
 	s->addSwitch(_("LOWER MUSIC WHEN PLAYING VIDEO"), "VideoLowersMusic", true);
+
+
+    auto favoriteSwitch = std::make_shared<SwitchComponent>(mWindow);
+    favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
+
+    s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"), "", favoriteSwitch, nullptr);
+
+    s->addSaveFunc([favoriteSwitch]() {
+	    bool useFavorite = favoriteSwitch->getState();
+	    Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
+	    Settings::getInstance()->saveFile();
+	    AudioManager::getInstance()->playRandomMusic(useFavorite);
+    });
+
+    s->addEntry(_("SELECT FAVORITE SONGS"), true, [this] {
+        GuiFavoriteMusicSelector::openSelectFavoriteSongs(mWindow, true, true);
+    });
+
 
 	s->addGroup(_("SOUNDS"));
 
@@ -4111,78 +4115,82 @@ void GuiMenu::openQuitMenu_static(Window *window, bool quickAccessMenu, bool ani
 	if (quickAccessMenu)
 	{
     		s->addGroup(_("QUICK ACCESS"));
+            if (AudioManager::getInstance()->isSongPlaying())
+            {
+                std::string songName = AudioManager::getInstance()->getSongName();
+                std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
 
-			if (AudioManager::getInstance()->isSongPlaying())
-			{
-			    std::string songName = AudioManager::getInstance()->getSongName();
-			    std::string currentSongPath = AudioManager::getInstance()->getCurrentSongPath();
-			
-			    if (!songName.empty())
-			    {
-			        s->addWithDescription(_("SKIP TO THE NEXT SONG"),
-			                              _("NOW PLAYING") + ": " + songName,
-			                              nullptr,
-			                              [s, window]()
-			                              {
-			                                  Window* w = window;
-			                                  AudioManager::getInstance()->playRandomMusic(false);
-			                                  delete s;
-			                                  GuiMenu::openQuitMenu_static(w, true, false);
-			                              },
-			                              "iconSound");
-			
+                if (!songName.empty())
+                {
+                    s->addWithDescription(_("SKIP TO THE NEXT SONG"),
+                                          _("NOW PLAYING") + ": " + songName,
+                                          nullptr,
+                                          [s, window]()
+                                          {
+                                              Window* w = window;
+                                              AudioManager::getInstance()->playRandomMusic(false);
+                                              delete s;
+                                              GuiMenu::openQuitMenu_static(w, true, false);
+                                          },
+                                          "iconSound");
+
+                    // Use the FavoriteMusicManager's loading function for better consistency
                     std::string favoritesFile = FavoriteMusicManager::getFavoriteMusicFilePath();
-			        std::list<std::string> lines;
-			
-			        if (Utils::FileSystem::exists(favoritesFile))
-			            lines = Utils::FileSystem::readAllLines(favoritesFile);
-			
-			        bool inFavorites = false;
-			        for (const auto& line : lines)
-			        {
-			            if (line == currentSongPath + ";" + songName)
-			            {
-			                inFavorites = true;
-			                break;
-			            }
-			        }
-			
-			        if (inFavorites)
-			        {
-			            s->addWithDescription(_("REMOVE CURRENT SONG FROM THE FAVORITES PLAYLIST"),"",
-			                                  nullptr,
-			                                  [s, window, currentSongPath, songName]()
-			                                  {
-			                                      Window* w = window;
-			                                      if (FavoriteMusicManager::getInstance().removeSongFromFavorites(currentSongPath, songName, window))
-			                                      {
-			                                          AudioManager::getInstance()->playRandomMusic(true);
-			                                          delete s;
-			                                          GuiMenu::openQuitMenu_static(w, true, false);
-			                                      }
-			                                  },
-			                                  "iconSound");
-			        }
-			        else
-			        {
-			            s->addWithDescription(_("SAVE CURRENT SONG TO THE FAVORITES PLAYLIST"),"",
-			                                  nullptr,
-			                                  [s, window, currentSongPath, songName]()
-			                                  {
-			                                      Window* w = window;
-			                                      if (FavoriteMusicManager::getInstance().saveSongToFavorites(currentSongPath, songName, window))
-			                                      {
-			                                          Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
-			                                          Settings::getInstance()->saveFile();
-			                                          AudioManager::getInstance()->playRandomMusic(true);
-			                                          delete s;
-			                                          GuiMenu::openQuitMenu_static(w, true, false);
-			                                      }
-			                                  },
-			                                  "iconSound");
-			        }
-			    }
-			}
+                    auto favorites = FavoriteMusicManager::loadFavoriteSongs(favoritesFile);
+
+                    // Check if the current file path exists in favorites - compare only paths, not names
+                    bool inFavorites = false;
+                    for (const auto& fav : favorites)
+                    {
+                        if (fav.first == currentSongPath)
+                        {
+                            inFavorites = true;
+                            break;
+                        }
+                    }
+
+                    // Prepare the correct name format for adding/removing (just as in GuiFavoriteMusicSelector)
+                    std::string fileNameWithoutExt = Utils::FileSystem::getFileName(currentSongPath);
+                    size_t lastDot = fileNameWithoutExt.find_last_of('.');
+                    if (lastDot != std::string::npos) {
+                        fileNameWithoutExt = fileNameWithoutExt.substr(0, lastDot);
+                    }
+
+                    if (inFavorites)
+                    {
+                        s->addWithDescription(_("REMOVE CURRENT SONG FROM THE FAVORITES PLAYLIST"), "",
+                                          nullptr,
+                                          [s, window, currentSongPath, fileNameWithoutExt]()
+                                          {
+                                              Window* w = window;
+                                              if (FavoriteMusicManager::getInstance().removeSongFromFavorites(currentSongPath, fileNameWithoutExt, window))
+                                              {
+                                                  AudioManager::getInstance()->playRandomMusic(true);
+                                                  delete s;
+                                                  GuiMenu::openQuitMenu_static(w, true, false);
+                                              }
+                                          },
+                                          "iconSound");
+                    }
+                    else
+                    {
+                        s->addWithDescription(_("SAVE CURRENT SONG TO THE FAVORITES PLAYLIST"), "",
+                                          nullptr,
+                                          [s, window, currentSongPath, fileNameWithoutExt]()
+                                          {
+                                              Window* w = window;
+                                              if (FavoriteMusicManager::getInstance().saveSongToFavorites(currentSongPath, fileNameWithoutExt, window))
+                                              {
+                                                  Settings::getInstance()->saveFile();
+                                                  AudioManager::getInstance()->playRandomMusic(true);
+                                                  delete s;
+                                                  GuiMenu::openQuitMenu_static(w, true, false);
+                                              }
+                                          },
+                                          "iconSound");
+                    }
+                }
+            }
 					
 		s->addEntry(_("LAUNCH SCREENSAVER"), false, [s, window]
 			{
