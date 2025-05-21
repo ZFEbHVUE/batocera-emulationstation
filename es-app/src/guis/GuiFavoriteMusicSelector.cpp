@@ -17,18 +17,79 @@
 #include <set>
 #include <algorithm>
 
+void GuiFavoriteMusicSelector::openFavoritesSongs(Window *window, bool animate)
+{
+    auto s = new GuiSettings(window, _("FAVORITES PLAYLIST"));
+    s->setCloseButton("back"); 
+
+    std::vector<std::pair<std::string, std::string>> favorites;
+    std::vector<std::shared_ptr<SwitchComponent>> favoritesSwitches;
+    
+    bool hasFavorites = false;
+    std::string favoritesFile = FavoriteMusicManager::getFavoriteMusicFilePath();
+    
+    if (Utils::FileSystem::exists(favoritesFile))
+    {
+        favorites = FavoriteMusicManager::loadFavoriteSongs(favoritesFile);
+        hasFavorites = !favorites.empty();
+    }
+    
+    s->addGroup(_("FAVORITE SONGS"));
+    
+    if (hasFavorites)
+    {
+        for (auto& fav : favorites)
+        {
+            std::string name = fav.second;
+            std::string path = fav.first;
+
+            auto sw = std::make_shared<SwitchComponent>(window);
+            sw->setState(true);  
+
+            s->addWithDescription(name, path, sw, nullptr, "iconSound");
+
+            favoritesSwitches.push_back(sw);
+        }
+    }
+    else
+    {
+        s->addEntry(_("NO FAVORITES FOUND"), false, nullptr, "iconInfo");
+    }
+    
+    s->addSaveFunc([window, favorites, favoritesSwitches]() {
+        bool favoritesChanged = false;
+        
+        for (size_t i = 0; i < favorites.size(); ++i) {
+            if (!favoritesSwitches[i]->getState()) {
+                FavoriteMusicManager::getInstance().removeSongFromFavorites(
+                    favorites[i].first, favorites[i].second, window);
+                favoritesChanged = true;
+            }
+        }
+    });
+    
+    if (animate)
+        s->getMenu().animateTo(Vector2f((Renderer::getScreenWidth() - s->getMenu().getSize().x()) / 2, 
+                                      (Renderer::getScreenHeight() - s->getMenu().getSize().y()) / 2));
+    else
+        s->getMenu().setPosition((Renderer::getScreenWidth() - s->getMenu().getSize().x()) / 2, 
+                                (Renderer::getScreenHeight() - s->getMenu().getSize().y()) / 2);
+
+    window->pushGui(s);
+}
+
 void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool browseMusicMode, bool animate, 
                                                     const std::string& customPath)
 {
-    auto s = new GuiSettings(window, (browseMusicMode ? _("SELECTION FAVORITE SONG") : _("FAVORITES LIST")).c_str());
+
+    auto s = new GuiSettings(window, _("SELECTION OF FAVORITE SONGS"));
     s->setCloseButton("select");
 
     std::vector<std::pair<std::string, std::string>> favorites;
     std::set<std::string> favoriteSet;
     std::vector<std::pair<std::string, std::string>> directoryFiles;
     std::vector<std::shared_ptr<SwitchComponent>> directorySwitches;
-    std::vector<std::shared_ptr<SwitchComponent>> favoritesSwitches;
-
+    
     if (Utils::FileSystem::exists(FavoriteMusicManager::getFavoriteMusicFilePath()))
     {
         favorites = FavoriteMusicManager::loadFavoriteSongs(
@@ -61,7 +122,7 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
         }
     }
 
-    s->addGroup(_("SELECTION FAVORITE SONG"));
+    s->addGroup(_("SELECTION OF FAVORITE SONGS"));
  
     if (isInRootDir) {
         s->addEntry(_("USER DIRECTORY") + " (" + userMusicPath + ")", true, [window, animate, userMusicPath]() {
@@ -71,6 +132,30 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
         s->addEntry(_("DEFAULT DIRECTORY") + " (" + systemMusicPath + ")", true, [window, animate, systemMusicPath]() {
             GuiFavoriteMusicSelector::openSelectFavoriteSongs(window, true, animate, systemMusicPath);
         }, "iconFolder");
+        
+        bool hasFavorites = !favorites.empty();
+        auto favoriteSwitch = std::make_shared<SwitchComponent>(window);
+        bool shouldUseFavorites = Settings::getInstance()->getBool("audio.useFavoriteMusic") && hasFavorites;
+        if (Settings::getInstance()->getBool("audio.useFavoriteMusic") && !hasFavorites)
+        {
+            Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
+            Settings::getInstance()->saveFile();
+        }
+
+        favoriteSwitch->setState(shouldUseFavorites);
+
+        s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"), "", favoriteSwitch, nullptr);
+        s->addSaveFunc([favoriteSwitch, hasFavorites]() 
+        {
+            bool useFavorite = favoriteSwitch->getState();
+            if (useFavorite && !hasFavorites)
+            {
+                useFavorite = false;
+            }
+            Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
+            Settings::getInstance()->saveFile();
+            AudioManager::getInstance()->playRandomMusic(false);
+        });
     }
     else {
         std::string currentPath = customPath;
@@ -126,45 +211,18 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
         }
     }
 
-    s->addGroup(_("FAVORITE FILE"));
+    s->addGroup(_("FAVORITE SONGS FILE"));
+    
+    s->addEntry(_("FAVORITES.M3U"), true, [window, animate]() {
+        GuiFavoriteMusicSelector::openFavoritesSongs(window, animate);
+    }, "iconSound");
 
-    if (!favorites.empty())
-    {
-        for (auto& fav : favorites)
-        {
-            std::string name = fav.second;
-            std::string path = fav.first;
-
-            auto sw = std::make_shared<SwitchComponent>(window);
-            sw->setState(true);  
-
-            s->addWithDescription(name, path, sw, nullptr, "iconSound");
-
-            favoritesSwitches.push_back(sw);
-        }
-    }
-    else
-    {
-        s->addEntry(_("NO FAVORITES FOUND"), false, nullptr, "iconInfo");
-    }
-
-    // Cette fonction est appelée lorsque le bouton select est utilisé ou lorsqu'on quitte l'écran
-    s->addSaveFunc([window, favorites, favoritesSwitches, directoryFiles, directorySwitches]() {
+    s->addSaveFunc([window, favorites, directoryFiles, directorySwitches]() {
         bool favoritesChanged = false;
         auto favoritePath = FavoriteMusicManager::getFavoriteMusicPath();
         if (!Utils::FileSystem::exists(favoritePath))
             Utils::FileSystem::createDirectory(favoritePath);
 
-        // Traiter les suppressions de favoris
-        for (size_t i = 0; i < favorites.size(); ++i) {
-            if (!favoritesSwitches[i]->getState()) {
-                FavoriteMusicManager::getInstance().removeSongFromFavorites(
-                    favorites[i].first, favorites[i].second, window);
-                favoritesChanged = true;
-            }
-        }
-
-        // Traiter les ajouts de favoris
         for (size_t i = 0; i < directoryFiles.size(); ++i) {
             if (directorySwitches[i]->getState()) {
                 std::string filePath = directoryFiles[i].first;
@@ -195,4 +253,3 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
 
     window->pushGui(s);
 }
-
