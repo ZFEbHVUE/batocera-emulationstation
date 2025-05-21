@@ -148,18 +148,23 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
         s->addEntry(_("NO FAVORITES FOUND"), false, nullptr, "iconInfo");
     }
 
+    // Cette fonction est appelée lorsque le bouton select est utilisé ou lorsqu'on quitte l'écran
     s->addSaveFunc([window, favorites, favoritesSwitches, directoryFiles, directorySwitches]() {
+        bool favoritesChanged = false;
         auto favoritePath = FavoriteMusicManager::getFavoriteMusicPath();
         if (!Utils::FileSystem::exists(favoritePath))
             Utils::FileSystem::createDirectory(favoritePath);
 
+        // Traiter les suppressions de favoris
         for (size_t i = 0; i < favorites.size(); ++i) {
             if (!favoritesSwitches[i]->getState()) {
                 FavoriteMusicManager::getInstance().removeSongFromFavorites(
                     favorites[i].first, favorites[i].second, window);
+                favoritesChanged = true;
             }
         }
 
+        // Traiter les ajouts de favoris
         for (size_t i = 0; i < directoryFiles.size(); ++i) {
             if (directorySwitches[i]->getState()) {
                 std::string filePath = directoryFiles[i].first;
@@ -175,6 +180,7 @@ void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window *window, bool brow
 
                 if (!found) {
                     FavoriteMusicManager::getInstance().saveSongToFavorites(filePath, fileName, window);
+                    favoritesChanged = true;
                 }
             }
         }

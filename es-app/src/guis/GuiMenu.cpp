@@ -3992,7 +3992,7 @@ void GuiMenu::openSoundSettings()
         }
         Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
         Settings::getInstance()->saveFile();
-        AudioManager::getInstance()->playRandomMusic(useFavorite);
+        AudioManager::getInstance()->playRandomMusic(false);
     });
 
     s->addEntry(_("SELECT FAVORITE SONGS"), true, [this] {
