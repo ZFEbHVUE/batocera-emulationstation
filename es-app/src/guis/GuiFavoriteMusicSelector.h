@@ -1,30 +1,28 @@
 #pragma once
+#ifndef ES_APP_GUIS_GUI_FAVORITE_MUSIC_SELECTOR_H
+#define ES_APP_GUIS_GUI_FAVORITE_MUSIC_SELECTOR_H
 
 #include "GuiComponent.h"
 #include <vector>
 #include <memory>
-#include <string>
 
-class MenuComponent;
-class SwitchComponent;
 class Window;
-class InputConfig;
-struct Input;
+class SwitchComponent;
 
 class GuiFavoriteMusicSelector : public GuiComponent
 {
 public:
     GuiFavoriteMusicSelector(Window* window);
-    ~GuiFavoriteMusicSelector();
-    
-    static void openSelectFavoriteSongs(Window* window, bool = false, bool = false);
-    bool input(InputConfig* config, Input input) override;
+    virtual ~GuiFavoriteMusicSelector();
+
+    static void openSelectFavoriteSongs(Window* window, bool browseMusicMode = false, bool animate = false);
 
 private:
-    void loadMusic();
     void save();
-    
-    MenuComponent* mMenu;
-    std::vector<std::pair<std::string, std::string>> mFiles; // path, name
+
+    std::vector<std::pair<std::string, std::string>> mFiles;
     std::vector<std::shared_ptr<SwitchComponent>> mSwitches;
+
 };
+
+#endif 
