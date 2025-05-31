@@ -13,6 +13,7 @@
 #include "views/ViewController.h"
 #include "LocaleES.h"
 #include "renderers/Renderer.h"
+#include "Window.h"
 #include <fstream>
 #include <set>
 #include <algorithm>
