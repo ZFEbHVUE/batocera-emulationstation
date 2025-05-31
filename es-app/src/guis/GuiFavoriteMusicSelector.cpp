@@ -7,6 +7,7 @@
 #include "FavoriteMusicManager.h"
 #include "utils/FileSystemUtil.h"
 #include "LocaleES.h"
+#include "renderers/Renderer.h"
 #include <fstream>
 #include <set>
 
@@ -16,15 +17,15 @@ GuiFavoriteMusicSelector::GuiFavoriteMusicSelector(Window* window) : GuiComponen
     
     loadMusic();
     
-    // Boutons
     mMenu->addButton(_("SAVE"), _("SAVE"), [this] { save(); delete this; });
     mMenu->addButton(_("CANCEL"), _("CANCEL"), [this] { delete this; });
     
     addChild(mMenu);
     
-    // Taille et position
-    setSize(window->getSize() * 0.8f);
-    setPosition((window->getSize() - getSize()) * 0.5f);
+    float width = Renderer::getScreenWidth() * 0.8f;
+    float height = Renderer::getScreenHeight() * 0.8f;
+    setSize(width, height);
+    setPosition((Renderer::getScreenWidth() - width) / 2, (Renderer::getScreenHeight() - height) / 2);
 }
 
 GuiFavoriteMusicSelector::~GuiFavoriteMusicSelector()
@@ -53,7 +54,6 @@ void GuiFavoriteMusicSelector::loadMusic()
     if (!Paths::getUserMusicPath().empty()) scan(Paths::getUserMusicPath());
     if (!Paths::getMusicPath().empty()) scan(Paths::getMusicPath());
     
-    // Trier par nom
     std::sort(mFiles.begin(), mFiles.end(), 
               [](auto& a, auto& b) { return a.second < b.second; });
     
@@ -75,12 +75,14 @@ void GuiFavoriteMusicSelector::loadMusic()
 void GuiFavoriteMusicSelector::save()
 {
     auto favFile = FavoriteMusicManager::getFavoriteMusicFilePath();
-   
+    
+    // Créer le dossier si nécessaire
     auto favPath = FavoriteMusicManager::getFavoriteMusicPath();
     if (!Utils::FileSystem::exists(favPath)) {
         Utils::FileSystem::createDirectory(favPath);
     }
     
+    // Sauvegarder les fichiers cochés
     std::ofstream file(favFile);
     if (file.is_open()) {
         for (size_t i = 0; i < mFiles.size() && i < mSwitches.size(); i++) {
@@ -91,7 +93,9 @@ void GuiFavoriteMusicSelector::save()
         file.close();
     }
     
+    // Supprimer le fichier si vide
     if (file.tellp() == 0) {
         Utils::FileSystem::removeFile(favFile);
     }
 }
+

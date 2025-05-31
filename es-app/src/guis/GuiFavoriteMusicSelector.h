@@ -1,4 +1,3 @@
-// GuiFavoriteMusicSelector.h - VERSION ULTRA SIMPLE
 #pragma once
 
 #include "GuiComponent.h"
