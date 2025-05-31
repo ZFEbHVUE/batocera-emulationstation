@@ -3965,14 +3965,31 @@ void GuiMenu::openSoundSettings()
 
 
     auto favoriteSwitch = std::make_shared<SwitchComponent>(mWindow);
-    favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
-    s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"),"",favoriteSwitch); 
-    favoriteSwitch->setOnChangedCallback([this](bool state) {
-        Settings::getInstance()->setBool("audio.useFavoriteMusic", state);
+    std::string favoritesFile = FavoriteMusicManager::getFavoriteMusicFilePath();
+    bool hasFavorites = false;
+    if (Utils::FileSystem::exists(favoritesFile))
+    {
+        auto favorites = FavoriteMusicManager::loadFavoriteSongs(favoritesFile);
+        hasFavorites = !favorites.empty();
+    }
+    bool shouldUseFavorites = Settings::getInstance()->getBool("audio.useFavoriteMusic") && hasFavorites;
+    if (Settings::getInstance()->getBool("audio.useFavoriteMusic") && !hasFavorites)
+    {
+        Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
         Settings::getInstance()->saveFile();
-        if (Settings::getInstance()->getBool("audio.bgmusic")) {
-            AudioManager::getInstance()->playRandomMusic(false);
+    }
+    favoriteSwitch->setState(shouldUseFavorites);
+    s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"), "", favoriteSwitch, nullptr);
+    s->addSaveFunc([favoriteSwitch, hasFavorites]() 
+    {
+        bool useFavorite = favoriteSwitch->getState();
+        if (useFavorite && !hasFavorites)
+        {
+            useFavorite = false;
         }
+        Settings::getInstance()->setBool("audio.useFavoriteMusic", useFavorite);
+        Settings::getInstance()->saveFile();
+        AudioManager::getInstance()->playRandomMusic(useFavorite);
     });
 
     s->addEntry(_("SELECTION OF FAVORITE SONGS"), true, [this] {
