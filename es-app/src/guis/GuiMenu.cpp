@@ -3963,6 +3963,18 @@ void GuiMenu::openSoundSettings()
 	s->addSwitch(_("PLAY SYSTEM-SPECIFIC MUSIC"), "audio.thememusics", true, [] { AudioManager::getInstance()->changePlaylist(ViewController::get()->getState().getSystem()->getTheme(), true); });	
 	s->addSwitch(_("LOWER MUSIC WHEN PLAYING VIDEO"), "VideoLowersMusic", true);
 
+
+    auto favoriteSwitch = std::make_shared<SwitchComponent>(mWindow);
+    favoriteSwitch->setState(Settings::getInstance()->getBool("audio.useFavoriteMusic"));
+    s->addWithDescription(_("PLAY ONLY SONGS FROM YOUR FAVORITES PLAYLIST"),"",favoriteSwitch); 
+    favoriteSwitch->setOnChangedCallback([this](bool state) {
+        Settings::getInstance()->setBool("audio.useFavoriteMusic", state);
+        Settings::getInstance()->saveFile();
+        if (Settings::getInstance()->getBool("audio.bgmusic")) {
+            AudioManager::getInstance()->playRandomMusic(false);
+        }
+    });
+
     s->addEntry(_("SELECTION OF FAVORITE SONGS"), true, [this] {
         GuiFavoriteMusicSelector::openSelectFavoriteSongs(mWindow, false, true);
     });
