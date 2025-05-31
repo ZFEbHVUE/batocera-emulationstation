@@ -56,6 +56,11 @@ GuiFavoriteMusicSelector::~GuiFavoriteMusicSelector()
     delete mMenu;
 }
 
+void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window* window, bool browseMusicMode, bool quickAccess)
+{
+    window->pushGui(new GuiFavoriteMusicSelector(window));
+}
+
 void GuiFavoriteMusicSelector::onSizeChanged()
 {
     float gridHeight = 60; // Fixed height for buttons

@@ -20,6 +20,9 @@ public:
     GuiFavoriteMusicSelector(Window* window);
     ~GuiFavoriteMusicSelector() override;
 
+    // Méthode statique pour compatibilité avec GuiMenu.cpp
+    static void openSelectFavoriteSongs(Window* window, bool browseMusicMode = false, bool quickAccess = false);
+
     bool input(InputConfig* config, Input input) override;
     void update(int deltaTime) override;
     void render(const Transform4x4f& parentTrans) override;
@@ -39,5 +42,3 @@ private:
     
     Window* mWindow;
 };
-
-
