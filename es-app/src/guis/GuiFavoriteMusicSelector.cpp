@@ -1,7 +1,6 @@
 #include "guis/GuiFavoriteMusicSelector.h"
 #include "components/MenuComponent.h"
 #include "components/SwitchComponent.h"
-#include "components/ButtonComponent.h"
 #include "Window.h"
 #include "Paths.h"
 #include "FavoriteMusicManager.h"
@@ -15,87 +14,48 @@ GuiFavoriteMusicSelector::GuiFavoriteMusicSelector(Window* window) : GuiComponen
 {
     mMenu = new MenuComponent(window, _("FAVORITE SONGS"));
     
-    loadMusic();
-    
-    mMenu->addButton(_("SAVE"), _("SAVE"), [this] { save(); delete this; });
-    mMenu->addButton(_("CANCEL"), _("CANCEL"), [this] { delete this; });
-    
-    addChild(mMenu);
-    
-    float width = Renderer::getScreenWidth() * 0.8f;
-    float height = Renderer::getScreenHeight() * 0.8f;
-    setSize(width, height);
-    setPosition((Renderer::getScreenWidth() - width) / 2, (Renderer::getScreenHeight() - height) / 2);
-}
-
-GuiFavoriteMusicSelector::~GuiFavoriteMusicSelector()
-{
-    delete mMenu;
-}
-
-void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window* window, bool, bool)
-{
-    window->pushGui(new GuiFavoriteMusicSelector(window));
-}
-
-void GuiFavoriteMusicSelector::loadMusic()
-{
+    // Scan récursif + ajout en une seule boucle
     std::function<void(const std::string&)> scan = [&](const std::string& path) {
-        auto files = Utils::FileSystem::getDirContent(path, false);
-        for (auto& file : files) {
-            if (Utils::FileSystem::isDirectory(file)) {
-                scan(file); // Récursif
-            } else if (Utils::FileSystem::isAudio(file)) {
-                mFiles.emplace_back(file, Utils::FileSystem::getFileName(file));
-            }
+        for (auto& file : Utils::FileSystem::getDirContent(path, false)) {
+            if (Utils::FileSystem::isDirectory(file)) scan(file);
+            else if (Utils::FileSystem::isAudio(file)) mFiles.emplace_back(file, Utils::FileSystem::getFileName(file));
         }
     };
-    
     if (!Paths::getUserMusicPath().empty()) scan(Paths::getUserMusicPath());
     if (!Paths::getMusicPath().empty()) scan(Paths::getMusicPath());
+    std::sort(mFiles.begin(), mFiles.end(), [](auto& a, auto& b) { return a.second < b.second; });
     
-    std::sort(mFiles.begin(), mFiles.end(), 
-              [](auto& a, auto& b) { return a.second < b.second; });
-    
-    std::set<std::string> favorites;
-    auto favFile = FavoriteMusicManager::getFavoriteMusicFilePath();
-    if (Utils::FileSystem::exists(favFile)) {
-        auto favs = FavoriteMusicManager::loadFavoriteSongs(favFile);
-        for (auto& fav : favs) favorites.insert(fav.first);
-    }
-    
+    // Charger favoris + créer liste en une boucle
+    std::set<std::string> fav; 
+    if (Utils::FileSystem::exists(FavoriteMusicManager::getFavoriteMusicFilePath()))
+        for (auto& f : FavoriteMusicManager::loadFavoriteSongs(FavoriteMusicManager::getFavoriteMusicFilePath())) fav.insert(f.first);
     for (auto& file : mFiles) {
         auto sw = std::make_shared<SwitchComponent>(mWindow);
-        sw->setState(favorites.count(file.first) > 0);
+        sw->setState(fav.count(file.first));
         mMenu->addWithLabel(file.second, sw);
         mSwitches.push_back(sw);
     }
+    
+    addChild(mMenu);
+    mMenu->setPosition((Renderer::getScreenWidth() - mMenu->getSize().x()) / 2, (Renderer::getScreenHeight() - mMenu->getSize().y()) / 2);
 }
 
-void GuiFavoriteMusicSelector::save()
-{
-    auto favFile = FavoriteMusicManager::getFavoriteMusicFilePath();
-    
-    // Créer le dossier si nécessaire
-    auto favPath = FavoriteMusicManager::getFavoriteMusicPath();
-    if (!Utils::FileSystem::exists(favPath)) {
-        Utils::FileSystem::createDirectory(favPath);
+GuiFavoriteMusicSelector::~GuiFavoriteMusicSelector() { 
+    std::ofstream f(FavoriteMusicManager::getFavoriteMusicFilePath());
+    for (size_t i = 0; i < mFiles.size() && i < mSwitches.size(); i++)
+        if (mSwitches[i]->getState()) f << mFiles[i].first << ";" << mFiles[i].second << "\n";
+    delete mMenu; 
+}
+
+void GuiFavoriteMusicSelector::openSelectFavoriteSongs(Window* window, bool, bool) { window->pushGui(new GuiFavoriteMusicSelector(window)); }
+
+bool GuiFavoriteMusicSelector::input(InputConfig* config, Input input) {
+    if (mMenu->input(config, input)) return true;
+    if (input.value && config->isMappedTo("back", input)) { delete this; return true; }
+    if (input.value && config->isMappedTo("b", input)) {
+        int i = mMenu->getCursorIndex();
+        if (i >= 0 && i < mSwitches.size()) { mSwitches[i]->setState(!mSwitches[i]->getState()); return true; }
     }
-    
-    // Sauvegarder les fichiers cochés
-    std::ofstream file(favFile);
-    if (file.is_open()) {
-        for (size_t i = 0; i < mFiles.size() && i < mSwitches.size(); i++) {
-            if (mSwitches[i]->getState()) {
-                file << mFiles[i].first << ";" << mFiles[i].second << "\n";
-            }
-        }
-        file.close();
-    }
-    
-    // Supprimer le fichier si vide
-    if (file.tellp() == 0) {
-        Utils::FileSystem::removeFile(favFile);
-    }
+    return GuiComponent::input(config, input);
 }
 

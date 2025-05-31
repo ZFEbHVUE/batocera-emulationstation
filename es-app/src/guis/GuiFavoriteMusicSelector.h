@@ -8,6 +8,8 @@
 class MenuComponent;
 class SwitchComponent;
 class Window;
+class InputConfig;
+struct Input;
 
 class GuiFavoriteMusicSelector : public GuiComponent
 {
@@ -16,6 +18,7 @@ public:
     ~GuiFavoriteMusicSelector();
     
     static void openSelectFavoriteSongs(Window* window, bool = false, bool = false);
+    bool input(InputConfig* config, Input input) override;
 
 private:
     void loadMusic();
@@ -25,4 +28,3 @@ private:
     std::vector<std::pair<std::string, std::string>> mFiles; // path, name
     std::vector<std::shared_ptr<SwitchComponent>> mSwitches;
 };
-
