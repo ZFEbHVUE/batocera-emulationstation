@@ -216,36 +216,6 @@ void AudioManager::playRandomMusic(bool continueIfPlaying)
     if (!Settings::BackgroundMusic())
         return;
 
-    if (Settings::getInstance()->getBool("audio.useFavoriteMusic"))
-    {
-        std::string favoritesFile = FavoriteMusicManager::getFavoriteMusicFilePath();
-        auto favorites = FavoriteMusicManager::loadFavoriteSongs(favoritesFile);
-
-        if (favorites.empty())
-        {
-            LOG(LogInfo) << "No favorite music found in " << favoritesFile;
-            Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
-            Settings::getInstance()->saveFile();
-        }
-        else
-        {
-            // Normal favorite playback logic
-            int randomIndex = Randomizer::random(favorites.size());
-            std::string chosenSongPath = favorites[randomIndex].first;
-
-            if (mCurrentMusic != nullptr && continueIfPlaying)
-                return;
-
-            LOG(LogInfo) << "Playing favorite music: " << favorites[randomIndex].second
-                        << " (" << chosenSongPath << ")";
-            playMusic(chosenSongPath);
-            playSong(chosenSongPath);
-            addLastPlayed(chosenSongPath, favorites.size());
-            mPlayingSystemThemeSong = "";
-            return;
-        }
-    }
-
     std::vector<std::string> musics;
 
     if (!mCurrentThemeMusicDirectory.empty())
@@ -260,13 +230,42 @@ void AudioManager::playRandomMusic(bool continueIfPlaying)
     if (musics.empty())
         getMusicIn(Paths::getUserEmulationStationPath() + "/music", musics);
 
+    if (musics.empty() && Settings::getInstance()->getBool("audio.useFavoriteMusic"))
+    {
+        std::string favoritesFile = FavoriteMusicManager::getFavoriteMusicFilePath();
+        auto favorites = FavoriteMusicManager::loadFavoriteSongs(favoritesFile);
+
+        if (!favorites.empty())
+        {
+            int randomIndex = Randomizer::random(favorites.size());
+            std::string chosenSongPath = favorites[randomIndex].first;
+
+            if (mCurrentMusic != nullptr && continueIfPlaying)
+                return;
+
+            LOG(LogInfo) << "Playing favorite music: " << favorites[randomIndex].second
+                        << " (" << chosenSongPath << ")";
+            playMusic(chosenSongPath);
+            playSong(chosenSongPath);
+            addLastPlayed(chosenSongPath, favorites.size());
+            mPlayingSystemThemeSong = "";
+            return;
+        }
+        else
+        {
+            LOG(LogInfo) << "No favorite music found in " << favoritesFile;
+            Settings::getInstance()->setBool("audio.useFavoriteMusic", false);
+            Settings::getInstance()->saveFile();
+        }
+    }
+
     if (musics.empty())
         return;
 
     int randomIndex = Randomizer::random(musics.size());
     while (songWasPlayedRecently(musics.at(randomIndex)))
     {
-        LOG(LogDebug) << "Music "" << musics.at(randomIndex) << "" was played recently, trying again";
+        LOG(LogDebug) << "Music \"" << musics.at(randomIndex) << "\" was played recently, trying again";
         randomIndex = Randomizer::random(musics.size());
     }
 
